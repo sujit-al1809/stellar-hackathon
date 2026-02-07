@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+.env.local
+*.tsbuildinfo
+
+certificates
+
+# SQLite database
+*.db
+*.db-wal
+*.db-shm
