@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="scripts/stratflow-logo1.svg" alt="StratFlow Logo" width="300">
+# StratFlow
 
-### Trustless Trading | AI Verification | Streaming Payouts
+### Trustless Trading | AI Verification | Streaming Payouts | On Stellar Ecosystem
 
 <h3>AI-Verified Trading Strategy Marketplace on Stellar</h3>
 
