@@ -5,7 +5,7 @@
 <h3>AI-Verified Trading Strategy Marketplace on Stellar</h3>
 
 <p>
-  <strong>Experts monetize knowledge. Traders access verified strategies. AI ensures trust.</strong>
+  <strong>Experts monetize knowledge. Traders access verified strategies. AI Agent verifies everything.</strong>
 </p>
 
 <p>
@@ -92,6 +92,98 @@ StratFlow solves a fundamental problem in trading: experts cannot share strategi
 
 <div align="center">
 <strong>Experts only earn when traders profit. Traders only pay on verified success.</strong>
+</div>
+
+<br>
+
+---
+
+## AI Agent: The Trust Engine
+
+<div align="center">
+
+**The AI Agent is the backbone of StratFlow - it autonomously verifies every trade execution**
+
+</div>
+
+<br>
+
+The AI Agent powered by **Gemini 2.0 Flash** acts as an impartial judge between experts and traders. When a trader submits proof of execution, the AI Agent:
+
+<table>
+<tr>
+<td width="50%">
+
+### What AI Agent Analyzes
+
+- Trade screenshot authenticity detection
+- Entry/exit points match strategy rules
+- Position sizing within parameters
+- Stop-loss placement verification
+- Timestamp cross-check with market data
+- Pattern recognition for manipulation
+
+</td>
+<td width="50%">
+
+### AI Confidence Scoring
+
+| Score | Action |
+|:---:|--------|
+| 85-100% | Auto-approved, enters dispute window |
+| 50-84% | Flagged for manual review |
+| 0-49% | Rejected as likely fraudulent |
+
+</td>
+</tr>
+</table>
+
+```
+AI AGENT VERIFICATION FLOW
+==========================
+
+  Trader submits proof
+         |
+         v
+  +----------------+
+  | Gemini 2.0     |
+  | Flash AI       |
+  | Analysis       |
+  +----------------+
+         |
+    +----+----+
+    |         |
+    v         v
+ APPROVED   REJECTED
+ (>=85%)    (<85%)
+    |         |
+    v         v
+ Dispute    Strategy
+ Window     Re-activated
+ (60s)      (refund stake)
+    |
+    +--------+--------+
+    |                 |
+    v                 v
+ No Dispute        Disputed
+    |                 |
+    v                 v
+ FINALIZED      Secondary AI
+ (stream)       Review
+                    |
+              +-----+-----+
+              |           |
+              v           v
+           CLEARED     SLASHED
+           (stream)    (stake burned)
+```
+
+<br>
+
+<div align="center">
+
+**No manual review needed for 95%+ of executions - the AI Agent handles it all**
+
 </div>
 
 <br>
