@@ -40,6 +40,153 @@
 
 <br>
 
+## One-Click AI Agent Demo
+
+<div align="center">
+
+**Experience the full StratFlow cycle in 60 seconds with REAL Stellar Testnet transactions**
+
+</div>
+
+<br>
+
+<table>
+<tr>
+<td align="center" width="16%">
+
+**Step 1**
+
+[/app/create](frontend/app/app/create)
+
+Expert Creates Strategy
+
+Lock XLM reward in escrow
+
+</td>
+<td align="center" width="16%">
+
+**Step 2**
+
+[/app/marketplace](frontend/app/app/marketplace)
+
+Browse & Stake
+
+Trader stakes 10% collateral
+
+</td>
+<td align="center" width="16%">
+
+**Step 3**
+
+[/app/agents](frontend/app/app/agents)
+
+AI Agent Executes
+
+One-Click: 3 REAL transactions
+
+</td>
+<td align="center" width="16%">
+
+**Step 4**
+
+[/app/verify](frontend/app/app/verify)
+
+AI Verifies Proof
+
+Gemini assigns confidence
+
+</td>
+<td align="center" width="16%">
+
+**Step 5**
+
+[/app/dispute](frontend/app/app/dispute)
+
+Dispute Window
+
+60s challenge period
+
+</td>
+<td align="center" width="16%">
+
+**Step 6**
+
+[/app/submissions](frontend/app/app/submissions)
+
+Reward Stream
+
+80% trader / 20% expert
+
+</td>
+</tr>
+</table>
+
+<br>
+
+```
+ONE-CLICK AI AGENT FLOW (/app/agents)
+=====================================
+
+  Click "Start Full Cycle"
+           |
+           v
+  +------------------+
+  | Transaction 1    |
+  | Buy XLM on       |
+  | StellarX DEX     |
+  +------------------+
+           |
+           v
+  +------------------+
+  | Transaction 2    |
+  | Execute Strategy |
+  | (Swap/Trade)     |
+  +------------------+
+           |
+           v
+  +------------------+
+  | Transaction 3    |
+  | Take Profit      |
+  | (Sell Position)  |
+  +------------------+
+           |
+           v
+  +------------------+
+  | Auto-Generate    |
+  | Execution Proof  |
+  +------------------+
+           |
+           v
+  +------------------+
+  | Submit to AI     |
+  | Verification     |
+  +------------------+
+           |
+           v
+     DEMO COMPLETE!
+   Trader: 80% + stake
+   Expert: 20% share
+```
+
+<br>
+
+<div align="center">
+
+| What AI Agent Does | Details |
+|:---|:---|
+| Autonomous Execution | Performs 3 real trades on Stellar Testnet |
+| Proof Generation | Auto-captures trade data for verification |
+| One-Click Demo | Full cycle from execution to payout |
+| 24/7 Operation | No manual intervention needed |
+
+</div>
+
+<br>
+
+---
+
+<br>
+
 ## The Problem
 
 <table>
