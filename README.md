@@ -1,15 +1,100 @@
+<div align="center">
+
 # StratFlow
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Stellar](https://img.shields.io/badge/Stellar-Soroban-blue)](https://stellar.org)
-[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org)
-[![Rust](https://img.shields.io/badge/Rust-Soroban%20SDK-orange)](https://soroban.stellar.org)
+<h3>AI-Verified Trading Strategy Marketplace on Stellar</h3>
 
-**A decentralized trading strategy marketplace where experts monetize their knowledge without managing other people's money, and traders access verified strategies with on-chain profit sharing.**
+<p>
+  <strong>Experts monetize knowledge. Traders access verified strategies. AI ensures trust.</strong>
+</p>
 
-StratFlow solves a fundamental problem in trading: experts cannot share strategies without custody risk, and traders cannot trust anonymous strategy sellers. Our solution uses Soroban smart contracts on Stellar to create a trustless marketplace where experts publish strategies and lock XLM rewards in escrow, traders independently execute on StellarX DEX and submit proof, Gemini AI verifies execution with confidence scoring, and streaming payments distribute rewards over time. The entire flow is on-chain with no admin keys, no custody, and perfect incentive alignment -- experts only earn when traders profit, and traders only pay on verified success.
+<p>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+  <a href="https://stellar.org"><img src="https://img.shields.io/badge/Stellar-Soroban-7B68EE?logo=stellar" alt="Stellar"></a>
+  <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-14-black?logo=next.js" alt="Next.js"></a>
+  <a href="https://soroban.stellar.org"><img src="https://img.shields.io/badge/Rust-Soroban%20SDK-orange?logo=rust" alt="Rust"></a>
+  <a href="https://ai.google.dev"><img src="https://img.shields.io/badge/AI-Gemini%202.0-4285F4?logo=google" alt="Gemini AI"></a>
+</p>
 
-Built for the Stellar Build-A-Thon Chennai 2026 (February 7-8, 2026).
+<p>
+  <a href="#quick-start">Quick Start</a> |
+  <a href="#demo-flow">Demo</a> |
+  <a href="#smart-contract-api">API Docs</a> |
+  <a href="#contributing">Contributing</a>
+</p>
+
+<br>
+
+<img src="https://raw.githubusercontent.com/stellar/.github/master/profile/banner.png" alt="Stellar Banner" width="600">
+
+<br>
+<br>
+
+**Built for Stellar Build-A-Thon Chennai 2026**
+
+*February 7-8, 2026*
+
+</div>
+
+---
+
+<br>
+
+## The Problem
+
+<table>
+<tr>
+<td width="50%">
+
+### For Experts
+
+- Cannot monetize strategies without custody risk
+- No way to prove track record to strangers
+- Complex legal and compliance issues
+
+</td>
+<td width="50%">
+
+### For Traders
+
+- Cannot verify if strategies are legitimate
+- No protection against fake or outdated advice
+- No transparent profit-sharing mechanism
+
+</td>
+</tr>
+</table>
+
+<br>
+
+## The Solution
+
+<div align="center">
+
+**StratFlow creates a trustless marketplace with perfect incentive alignment**
+
+</div>
+
+<br>
+
+StratFlow solves a fundamental problem in trading: experts cannot share strategies without custody risk, and traders cannot trust anonymous strategy sellers. Our solution uses Soroban smart contracts on Stellar to create a trustless marketplace where:
+
+| Step | Action | Result |
+|:----:|--------|--------|
+| 1 | Expert publishes strategy | XLM reward locked in escrow |
+| 2 | Trader stakes 10% collateral | Commits to execute |
+| 3 | Trader executes on StellarX | Real trades on Stellar DEX |
+| 4 | AI verifies proof | Gemini assigns confidence score |
+| 5 | Dispute window (60s) | Expert can challenge |
+| 6 | Streaming payout | Rewards distributed over 5 min |
+
+<br>
+
+<div align="center">
+<strong>Experts only earn when traders profit. Traders only pay on verified success.</strong>
+</div>
+
+<br>
 
 ---
 
@@ -135,32 +220,105 @@ stateDiagram-v2
 
 ## Key Features
 
-| Feature | Description |
-|---------|-------------|
-| Strategy Marketplace | Experts publish strategies with locked XLM rewards |
-| Staking Mechanism | Traders stake 10% of reward as collateral |
-| AI Agent Execution | Autonomous trading bots execute strategies 24/7 |
-| Gemini AI Verification | Analyzes proofs, assigns 0-100 confidence scores |
-| Dispute Resolution | 60-second window for experts to challenge |
-| Streaming Payouts | Rewards unlock linearly over 5 minutes |
-| On-Chain Escrow | All funds locked in Soroban smart contracts |
-| StellarX Integration | One-click trading on Stellar native DEX |
+<table>
+<tr>
+<td align="center" width="25%">
+
+**Strategy Marketplace**
+
+Experts publish strategies with locked XLM rewards
+
+</td>
+<td align="center" width="25%">
+
+**Staking Mechanism**
+
+Traders stake 10% of reward as collateral
+
+</td>
+<td align="center" width="25%">
+
+**AI Agents**
+
+Autonomous bots execute strategies 24/7
+
+</td>
+<td align="center" width="25%">
+
+**Gemini AI**
+
+Analyzes proofs with confidence scores
+
+</td>
+</tr>
+<tr>
+<td align="center" width="25%">
+
+**Dispute Resolution**
+
+60-second window for experts to challenge
+
+</td>
+<td align="center" width="25%">
+
+**Streaming Payouts**
+
+Rewards unlock linearly over 5 minutes
+
+</td>
+<td align="center" width="25%">
+
+**On-Chain Escrow**
+
+All funds locked in Soroban contracts
+
+</td>
+<td align="center" width="25%">
+
+**StellarX DEX**
+
+One-click trading on Stellar
+
+</td>
+</tr>
+</table>
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Blockchain | Stellar Testnet + Soroban Smart Contracts |
-| Smart Contract | Rust + soroban-sdk |
-| Frontend | Next.js 14, React 18, TypeScript |
-| Styling | TailwindCSS, Framer Motion |
-| AI Verification | Google Gemini 2.0 Flash API |
-| Wallet | Freighter Browser Extension |
-| DEX | StellarX Integration |
-| Database | SQLite (better-sqlite3) |
-| Auth | JWT (jose) + bcrypt |
+<table>
+<tr>
+<td align="center" width="14%">
+<img src="https://img.shields.io/badge/-Stellar-7B68EE?style=for-the-badge&logo=stellar&logoColor=white" alt="Stellar">
+<br><strong>Blockchain</strong>
+</td>
+<td align="center" width="14%">
+<img src="https://img.shields.io/badge/-Rust-orange?style=for-the-badge&logo=rust&logoColor=white" alt="Rust">
+<br><strong>Contract</strong>
+</td>
+<td align="center" width="14%">
+<img src="https://img.shields.io/badge/-Next.js-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js">
+<br><strong>Frontend</strong>
+</td>
+<td align="center" width="14%">
+<img src="https://img.shields.io/badge/-Tailwind-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind">
+<br><strong>Styling</strong>
+</td>
+<td align="center" width="14%">
+<img src="https://img.shields.io/badge/-Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Gemini">
+<br><strong>AI</strong>
+</td>
+<td align="center" width="14%">
+<img src="https://img.shields.io/badge/-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+<br><strong>Language</strong>
+</td>
+<td align="center" width="14%">
+<img src="https://img.shields.io/badge/-SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite">
+<br><strong>Database</strong>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -478,19 +636,26 @@ cargo test
 
 ## Hackathon Submission
 
+<div align="center">
+
 | Field | Value |
-|-------|-------|
-| Event | Stellar Build-A-Thon Chennai |
-| Date | February 7-8, 2026 |
-| Prize Pool | $1,200 |
-| Track | DeFi / AI / Payments |
-| Repository | [github.com/sujit-al1809/stellar-hackathon](https://github.com/sujit-al1809/stellar-hackathon) |
+|:-----:|:-----:|
+| **Event** | Stellar Build-A-Thon Chennai |
+| **Date** | February 7-8, 2026 |
+| **Prize Pool** | $1,200 |
+| **Track** | DeFi / AI / Payments |
+| **Repository** | [github.com/sujit-al1809/stellar-hackathon](https://github.com/sujit-al1809/stellar-hackathon) |
+
+</div>
 
 ---
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+<details>
+<summary>View MIT License</summary>
 
 ```
 MIT License
@@ -508,6 +673,29 @@ The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 ```
 
+</details>
+
 ---
 
-**Made with Rust, Next.js, and Stellar**
+<div align="center">
+
+<br>
+
+**StratFlow**
+
+*AI-Verified Trading Strategy Marketplace on Stellar*
+
+<br>
+
+<a href="https://stellar.org"><img src="https://img.shields.io/badge/-Built%20on%20Stellar-7B68EE?style=for-the-badge&logo=stellar&logoColor=white" alt="Built on Stellar"></a>
+<a href="https://soroban.stellar.org"><img src="https://img.shields.io/badge/-Powered%20by%20Soroban-orange?style=for-the-badge&logo=rust&logoColor=white" alt="Powered by Soroban"></a>
+<a href="https://ai.google.dev"><img src="https://img.shields.io/badge/-AI%20by%20Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="AI by Gemini"></a>
+
+<br>
+<br>
+
+Made with Rust + Next.js + Stellar
+
+<br>
+
+</div>
