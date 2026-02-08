@@ -1,16 +1,22 @@
 # StratFlow
 
-**AI-Verified Strategy Marketplace on Stellar**
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Stellar](https://img.shields.io/badge/Stellar-Soroban-blue)](https://stellar.org)
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org)
+[![Rust](https://img.shields.io/badge/Rust-Soroban%20SDK-orange)](https://soroban.stellar.org)
 
-Stellar Build-A-Thon Chennai 2026 | February 7-8, 2026
+**A decentralized trading strategy marketplace where experts monetize their knowledge without managing other people's money, and traders access verified strategies with on-chain profit sharing.**
+
+StratFlow solves a fundamental problem in trading: experts cannot share strategies without custody risk, and traders cannot trust anonymous strategy sellers. Our solution uses Soroban smart contracts on Stellar to create a trustless marketplace where experts publish strategies and lock XLM rewards in escrow, traders independently execute on StellarX DEX and submit proof, Gemini AI verifies execution with confidence scoring, and streaming payments distribute rewards over time. The entire flow is on-chain with no admin keys, no custody, and perfect incentive alignment -- experts only earn when traders profit, and traders only pay on verified success.
+
+Built for the Stellar Build-A-Thon Chennai 2026 (February 7-8, 2026).
 
 ---
 
 ## Table of Contents
 
 - [Overview](#overview)
-- [Problem Statement](#problem-statement)
-- [Solution](#solution)
+- [How It Works](#how-it-works)
 - [Architecture](#architecture)
 - [Execution Lifecycle](#execution-lifecycle)
 - [Key Features](#key-features)
@@ -21,6 +27,7 @@ Stellar Build-A-Thon Chennai 2026 | February 7-8, 2026
 - [Quick Start](#quick-start)
 - [Environment Variables](#environment-variables)
 - [Testing](#testing)
+- [Contributing](#contributing)
 - [License](#license)
 
 ---
@@ -36,31 +43,28 @@ StratFlow is a decentralized trading strategy marketplace built on Stellar where
 
 ---
 
-## Problem Statement
+## How It Works
 
-Trading strategy experts cannot monetize their knowledge without:
-- Managing other people's money (custody risk)
-- Building trust with strangers (reputation problem)  
-- Handling complex legal/compliance issues
-
-Traders cannot access quality strategies because:
-- No way to verify expert track records
-- No protection against fake or outdated strategies
-- No transparent profit-sharing mechanism
-
----
-
-## Solution
-
-StratFlow creates a trustless marketplace with perfect incentive alignment:
-
-1. Experts publish strategies and lock reward escrow (skin in the game)
-2. Traders stake 10% collateral and execute independently on StellarX
-3. AI verifies execution proof against strategy rules
-4. Dispute window allows experts to challenge fraudulent claims
-5. Streaming payouts distribute rewards over time
-
-**Result:** Experts only earn when traders succeed. Traders only pay on verified success.
+```
+Expert                          Trader                         Smart Contract
+  |                               |                                  |
+  |-- 1. Publish strategy ------->|                                  |
+  |   (lock 1000 XLM reward)      |                                  |
+  |                               |                                  |
+  |                               |-- 2. Stake 100 XLM (10%) ------->|
+  |                               |                                  |
+  |                               |-- 3. Execute on StellarX ------->|
+  |                               |                                  |
+  |                               |-- 4. Submit proof --------------->|
+  |                               |                                  |
+  |                               |<-- 5. AI verifies (92% conf) ----|
+  |                               |                                  |
+  |<-- 6. Dispute window (60s) ---|----------------------------------|
+  |                               |                                  |
+  |                               |<-- 7. Stream rewards (5 min) ----|
+  |                               |                                  |
+  |<-- 8. Get 20% share ----------|-- Gets 80% + stake back -------->|
+```
 
 ---
 
@@ -430,6 +434,48 @@ node test-demo.mjs
 
 ---
 
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Development Setup
+
+```bash
+# Clone the repo
+git clone https://github.com/sujit-al1809/stellar-hackathon.git
+cd stratflow
+
+# Install frontend dependencies
+cd frontend && npm install
+
+# Run in development mode
+npm run dev
+```
+
+### Running Contract Tests
+
+```bash
+cd contracts/stratflow
+cargo test
+```
+
+---
+
+## Acknowledgments
+
+- [Stellar Development Foundation](https://stellar.org) for the Soroban smart contracts platform
+- [StellarX](https://stellarx.com) for the DEX integration
+- [Google Gemini](https://gemini.google.com) for AI verification capabilities
+- Stellar Build-A-Thon Chennai 2026 organizers
+
+---
+
 ## Hackathon Submission
 
 | Field | Value |
@@ -438,13 +484,30 @@ node test-demo.mjs
 | Date | February 7-8, 2026 |
 | Prize Pool | $1,200 |
 | Track | DeFi / AI / Payments |
+| Repository | [github.com/sujit-al1809/stellar-hackathon](https://github.com/sujit-al1809/stellar-hackathon) |
 
 ---
 
 ## License
 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+```
 MIT License
+
+Copyright (c) 2026 StratFlow
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+```
 
 ---
 
-Built for Stellar Build-A-Thon Chennai 2026
+**Made with Rust, Next.js, and Stellar**
