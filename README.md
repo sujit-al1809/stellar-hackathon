@@ -142,6 +142,173 @@ Reward Stream
 
 <br>
 
+## 📜 Contract Address
+
+<div align="center">
+
+| Network | Contract ID |
+|:-------:|:------------|
+| **Stellar Testnet** | `CBJRILB6ZOEUWJ7Q5WGXL7PZZJDB7M7YUOFCOYAV3QYZYHGLB7FW5Q73` |
+
+**Explorer:** [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CBJRILB6ZOEUWJ7Q5WGXL7PZZJDB7M7YUOFCOYAV3QYZYHGLB7FW5Q73)
+
+</div>
+
+<br>
+
+---
+
+<br>
+
+## ✨ Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 🔐 For Experts
+- **Publish Strategies** - Share trading knowledge with locked escrow rewards
+- **Earn Passively** - Get 20% of all successful executions
+- **Dispute Rights** - Challenge fraudulent proof submissions
+- **Track Record** - Build on-chain reputation
+
+</td>
+<td width="50%">
+
+### 📈 For Traders
+- **Verified Strategies** - AI-validated execution proof
+- **Low Risk** - Only 10% stake, refunded if strategy fails
+- **Real Trades** - Execute on StellarX DEX with real assets
+- **Streaming Payouts** - Rewards distributed over 5 minutes
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<div align="center">
+
+| Feature | Technology |
+|:--------|:-----------|
+| Smart Contracts | Soroban (Rust) on Stellar |
+| AI Verification | Gemini 2.0 Flash |
+| Frontend | Next.js 14 + TailwindCSS |
+| Wallet | Freighter Wallet Integration |
+| DEX Integration | StellarX Trading |
+| Streaming Payments | Stellar SDK |
+
+</div>
+
+<br>
+
+---
+
+<br>
+
+## 📸 Screenshots
+
+<div align="center">
+
+| Page | Preview |
+|:-----|:--------|
+| **Home** | Landing page with marketplace overview |
+| **Create Strategy** | Form to publish trading strategies |
+| **Marketplace** | Browse and stake on strategies |
+| **AI Agents** | One-click automated execution |
+| **Verify** | Upload proof for AI verification |
+| **Dashboard** | Track earnings and payouts |
+
+*Screenshots will be added after final UI polish*
+
+</div>
+
+<br>
+
+---
+
+<br>
+
+## 🔗 Deployed Links
+
+<div align="center">
+
+| Environment | Link |
+|:------------|:-----|
+| **Live Demo** | *Coming Soon* |
+| **GitHub Repo** | [github.com/sujit-al1809/stellar-hackathon](https://github.com/sujit-al1809/stellar-hackathon) |
+| **Smart Contract** | [Stellar Expert](https://stellar.expert/explorer/testnet/contract/CBJRILB6ZOEUWJ7Q5WGXL7PZZJDB7M7YUOFCOYAV3QYZYHGLB7FW5Q73) |
+
+</div>
+
+<br>
+
+---
+
+<br>
+
+## 🚀 Future Scope
+
+<table>
+<tr>
+<td width="33%" align="center">
+
+### Phase 1
+**Q1 2026**
+
+- ✅ Core smart contract
+- ✅ AI verification engine
+- ✅ Basic marketplace UI
+- 🔄 Testnet deployment
+
+</td>
+<td width="33%" align="center">
+
+### Phase 2
+**Q2 2026**
+
+- Multi-asset strategies
+- Advanced analytics dashboard
+- Expert leaderboard
+- Mobile app (React Native)
+
+</td>
+<td width="33%" align="center">
+
+### Phase 3
+**Q3-Q4 2026**
+
+- Mainnet launch
+- DAO governance
+- Cross-chain strategies
+- Institutional features
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<div align="center">
+
+### 🎯 Roadmap Highlights
+
+| Feature | Status | Target |
+|:--------|:------:|:------:|
+| Multi-strategy portfolios | 📋 Planned | Q2 2026 |
+| Social trading features | 📋 Planned | Q2 2026 |
+| Advanced AI models | 📋 Planned | Q3 2026 |
+| Mainnet deployment | 📋 Planned | Q3 2026 |
+| Token launch (STRAT) | 📋 Planned | Q4 2026 |
+
+</div>
+
+<br>
+
+---
+
+<br>
+
 ## The Problem
 
 <table>
