@@ -21,6 +21,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${jetbrains.variable} font-sans antialiased`}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.addEventListener('error', function(e) {
+                if (e.message && e.message.includes('Failed to connect to MetaMask')) {
+                  e.stopImmediatePropagation();
+                  e.preventDefault();
+                }
+              });
+              window.addEventListener('unhandledrejection', function(e) {
+                if (e.reason && e.reason.message && e.reason.message.includes('Failed to connect to MetaMask')) {
+                  e.stopImmediatePropagation();
+                  e.preventDefault();
+                }
+              });
+            `,
+          }}
+        />
         <AuthProvider>
           <WalletProvider>
             {children}

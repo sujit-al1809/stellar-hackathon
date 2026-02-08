@@ -13,6 +13,8 @@ export default function CreatePage() {
   const [rules, setRules] = useState<string[]>(["", "", ""]);
   const [stakeAmount, setStakeAmount] = useState("50");
   const [profitSharePercent, setProfitSharePercent] = useState("20");
+  const [baseAsset, setBaseAsset] = useState("BTC");
+  const [counterAsset, setCounterAsset] = useState("USDC");
   const [loading, setLoading] = useState(false);
   const [strategyId, setStrategyId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -35,6 +37,23 @@ export default function CreatePage() {
   const stake = parseInt(stakeAmount, 10);
   const profitShare = parseInt(profitSharePercent, 10);
   const isValid = title.trim() && description.trim() && filledRules.length >= 1 && stake > 0 && profitShare > 0 && profitShare <= 100;
+
+  // Auto-fill with demo data for quick testing
+  const fillDemoData = () => {
+    setTitle("Bitcoin Scalping Strategy - RSI Reversal");
+    setDescription("High-frequency scalping strategy for BTC using RSI oversold/overbought signals on 5-minute charts. Target 1-3% daily returns with tight stop losses.");
+    setRules([
+      "Entry: Buy when RSI(14) crosses below 30 on 5-minute chart",
+      "Exit: Sell when RSI(14) crosses above 70 OR 2% stop loss hit",
+      "Position size: Maximum 5% of total portfolio per trade",
+      "Trading hours: Only during high volatility (8AM-12PM UTC, 2PM-6PM UTC)",
+      "Take profit: 1.5% target, move stop to breakeven after 0.8% gain"
+    ]);
+    setStakeAmount("50");
+    setProfitSharePercent("20");
+    setBaseAsset("BTC");
+    setCounterAsset("USDC");
+  };
 
   const handleCreate = async () => {
     if (!publicKey) {
@@ -62,7 +81,7 @@ export default function CreatePage() {
       const id = await createStrategy(publicKey, stake, signTx);
       setStrategyId(id);
 
-      // Save off-chain metadata (title, description, rules, stake, profit share)
+      // Save off-chain metadata (title, description, rules, stake, profit share, trading pair)
       saveStrategyMeta({
         id,
         title: title.trim(),
@@ -71,6 +90,8 @@ export default function CreatePage() {
         rewardAmount: stake, // For compatibility
         stakeAmount: stake,
         profitSharePercent: profitShare,
+        baseAsset: baseAsset.trim() || "BTC",
+        counterAsset: counterAsset.trim() || "USDC",
         creatorAddress: publicKey,
         createdAt: new Date().toISOString(),
       });
@@ -91,11 +112,22 @@ export default function CreatePage() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-zinc-100 mb-1">Publish Trading Strategy</h1>
-        <p className="text-zinc-500 text-sm">
-          Set stake requirement • Define profit share • Earn as traders profit
-        </p>
+      <div className="mb-8 flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-zinc-100 mb-1">Publish Trading Strategy</h1>
+          <p className="text-zinc-500 text-sm">
+            Set stake requirement • Define profit share • Earn as traders profit
+          </p>
+        </div>
+        {!strategyId && (
+          <button
+            onClick={fillDemoData}
+            className="px-4 py-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase hover:bg-blue-500/20 hover:border-blue-500/50 transition-all clip-corner flex items-center gap-2"
+          >
+            <span className="text-lg">⚡</span>
+            Auto-Fill Demo
+          </button>
+        )}
       </div>
 
       <StepIndicator
@@ -136,6 +168,37 @@ export default function CreatePage() {
               placeholder="Proven day trading strategy for BTC using RSI and MACD indicators. Works best in volatile markets with 1-5 minute candles..."
               disabled={!!strategyId}
             />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm text-zinc-400 mb-1.5 font-medium">
+                Base Asset
+              </label>
+              <input
+                type="text"
+                value={baseAsset}
+                onChange={(e) => setBaseAsset(e.target.value.toUpperCase())}
+                className="surface-input"
+                placeholder="BTC"
+                disabled={!!strategyId}
+              />
+              <p className="text-xs text-zinc-600 mt-1">Asset to trade (e.g., BTC, ETH, XLM)</p>
+            </div>
+            <div>
+              <label className="block text-sm text-zinc-400 mb-1.5 font-medium">
+                Counter Asset
+              </label>
+              <input
+                type="text"
+                value={counterAsset}
+                onChange={(e) => setCounterAsset(e.target.value.toUpperCase())}
+                className="surface-input"
+                placeholder="USDC"
+                disabled={!!strategyId}
+              />
+              <p className="text-xs text-zinc-600 mt-1">Quote currency (e.g., USDC, USD, XLM)</p>
+            </div>
           </div>
 
           <div>
@@ -298,6 +361,18 @@ export default function CreatePage() {
             <div className="text-xs text-zinc-600">
               {filledRules.length} trading rules • Ready for traders
             </div>
+          </div>
+          
+          {/* DEMO FLOW: Next Step */}
+          <div className="mt-6 pt-6 border-t border-zinc-800 space-y-3">
+            <div className="text-[10px] uppercase tracking-widest text-zinc-600 mb-2">Demo Flow: Next Step</div>
+            <a 
+              href="/app/marketplace"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-lime-500 text-black font-bold uppercase text-sm hover:bg-lime-400 transition-all clip-corner"
+            >
+              Browse Marketplace →
+            </a>
+            <div className="text-[10px] text-zinc-500">Now a trader can find and execute your strategy</div>
           </div>
         </Card>
       ) : (

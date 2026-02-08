@@ -2,10 +2,10 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Check, Circle, Loader2 } from "lucide-react";
+import { Check, Circle, Loader2, Activity, Square, Terminal } from "lucide-react";
 
 // ============================================================
-// Card — Clean surface card
+// Card — Cyber style surface
 // ============================================================
 export function Card({
   children,
@@ -21,13 +21,17 @@ export function Card({
   return (
     <div
       className={cn(
-        "surface-card",
-        hover && "hover:border-zinc-700/80",
-        onClick && "cursor-pointer",
+        "relative bg-zinc-950 border border-zinc-800 p-6 clip-corner transition-all duration-300",
+        hover && "hover:border-lime-500/50 hover:bg-zinc-900",
+        onClick && "cursor-pointer active:scale-[0.99]",
         className
       )}
       onClick={onClick}
     >
+      {/* Corner Accents */}
+      <div className={cn("absolute top-0 right-0 w-2 h-2 border-t border-r border-zinc-700 transition-colors pointer-events-none", hover && "group-hover:border-lime-500")} />
+      <div className={cn("absolute bottom-0 left-0 w-2 h-2 border-b border-l border-zinc-700 transition-colors pointer-events-none", hover && "group-hover:border-lime-500")} />
+      
       {children}
     </div>
   );
@@ -45,21 +49,19 @@ export function StatusBadge({
   status: "not-verified" | "verified" | "streaming" | "completed" | "pending";
 }) {
   const config = {
-    "not-verified": { label: "Not Verified", cls: "badge-red" },
-    pending: { label: "Pending", cls: "badge-amber" },
-    verified: { label: "Verified", cls: "badge-lime" },
-    streaming: { label: "Streaming", cls: "badge-blue" },
-    completed: { label: "Completed", cls: "badge-lime" },
+    "not-verified": { label: "UNVERIFIED", bg: "bg-red-500/10", border: "border-red-500/20", text: "text-red-500", dot: "bg-red-500" },
+    pending: { label: "PENDING...", bg: "bg-amber-500/10", border: "border-amber-500/20", text: "text-amber-500", dot: "bg-amber-500 animate-pulse" },
+    verified: { label: "VERIFIED_OK", bg: "bg-lime-500/10", border: "border-lime-500/30", text: "text-lime-400", dot: "bg-lime-500" },
+    streaming: { label: "STREAMING >>", bg: "bg-blue-500/10", border: "border-blue-500/20", text: "text-blue-400", dot: "bg-blue-500 animate-pulse" },
+    completed: { label: "EXE_COMPLETE", bg: "bg-zinc-800", border: "border-zinc-700", text: "text-zinc-400", dot: "bg-zinc-500" },
   };
   const c = config[status];
   return (
-    <span className={cn("badge", c.cls)}>
-      <span className={cn(
-        "w-1.5 h-1.5 rounded-full",
-        status === "verified" || status === "completed" ? "bg-lime-500" :
-        status === "streaming" || status === "pending" ? "bg-current animate-pulse-dot" :
-        "bg-current"
-      )} />
+    <span className={cn(
+      "inline-flex items-center gap-2 px-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider border",
+      c.bg, c.border, c.text
+    )}>
+      <span className={cn("w-1.5 h-1.5", c.dot)} />
       {c.label}
     </span>
   );
@@ -70,16 +72,19 @@ export function StatusBadge({
 // ============================================================
 export function RoleBadge({ role }: { role: string }) {
   const config: Record<string, { icon: string; cls: string }> = {
-    strategist: { icon: "◆", cls: "badge-blue" },
-    executor: { icon: "⚡", cls: "badge-amber" },
-    verifier: { icon: "✓", cls: "badge-lime" },
-    admin: { icon: "★", cls: "badge-zinc" },
+    strategist: { icon: "◆", cls: "bg-blue-500/10 border-blue-500 text-blue-400" },
+    executor: { icon: "⚡", cls: "bg-amber-500/10 border-amber-500 text-amber-400" },
+    verifier: { icon: "✓", cls: "bg-lime-500/10 border-lime-500 text-lime-400" },
+    admin: { icon: "★", cls: "bg-purple-500/10 border-purple-500 text-purple-400" },
   };
   const c = config[role] || config.executor;
   return (
-    <span className={cn("badge", c.cls)}>
-      <span className="text-[10px]">{c.icon}</span>
-      <span className="capitalize">{role}</span>
+    <span className={cn(
+      "inline-flex items-center gap-2 px-2 py-0.5 text-[10px] font-mono font-bold uppercase border",
+      c.cls
+    )}>
+      <span>{c.icon}</span>
+      <span>{role}</span>
     </span>
   );
 }
@@ -91,7 +96,7 @@ export function BigNumber({
   value,
   label,
   suffix = "XLM",
-  color = "text-gradient",
+  color = "text-white",
 }: {
   value: string | number;
   label: string;
@@ -99,30 +104,55 @@ export function BigNumber({
   color?: string;
 }) {
   return (
-    <div className="text-center">
-      <div className="relative inline-block">
-        <div className={cn(
-          "text-5xl md:text-6xl font-bold font-mono tracking-tight",
-          color
-        )}>
+    <div className="font-mono">
+      <div className="flex items-baseline gap-2">
+        <div className={cn("text-4xl font-bold tracking-tighter", color)}>
           {value}
-          <span className="text-xl text-zinc-500 font-normal ml-3">{suffix}</span>
         </div>
-        {color === "text-gradient" && (
-          <div className="absolute inset-0 blur-2xl opacity-30 bg-gradient-to-r from-lime-500 via-cyan-500 to-purple-500" />
-        )}
+        <div className="text-sm text-zinc-500 font-bold">{suffix}</div>
       </div>
-      <div className="text-sm text-zinc-400 mt-3 uppercase tracking-widest font-medium">{label}</div>
+      <div className="text-[10px] text-zinc-600 uppercase tracking-widest mt-1 border-l-2 border-lime-500/50 pl-2">
+         {label}
+      </div>
     </div>
   );
+}
+
+// ============================================================
+// StatCard - Dashboard statistic
+// ============================================================
+export function StatCard({ 
+  label, 
+  value, 
+  icon: Icon,
+  trend 
+}: { 
+  label: string; 
+  value: string; 
+  icon?: any;
+  trend?: string;
+}) {
+  return (
+    <div className="bg-zinc-950 border border-zinc-900 p-4 relative group hover:border-lime-500/30 transition-colors">
+       <div className="flex justify-between items-start mb-2">
+          <span className="text-[10px] font-mono uppercase text-zinc-500">{label}</span>
+          {Icon && <Icon className="w-4 h-4 text-zinc-700 group-hover:text-lime-500 transition-colors" />}
+       </div>
+       <div className="text-2xl font-bold text-zinc-200 font-mono tracking-tight">{value}</div>
+       {trend && <div className="text-[10px] text-lime-500 mt-1">{trend}</div>}
+       
+       {/* Decor */}
+       <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-zinc-800" />
+    </div>
+  )
 }
 
 // ============================================================
 // Spinner
 // ============================================================
 export function Spinner({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
-  const sizeClass = { sm: "h-4 w-4", md: "h-5 w-5", lg: "h-6 w-6" }[size];
-  return <Loader2 className={cn("animate-spin text-zinc-500", sizeClass)} />;
+  const sizeClass = { sm: "h-3 w-3", md: "h-4 w-4", lg: "h-6 w-6" }[size];
+  return <Loader2 className={cn("animate-spin text-lime-500", sizeClass)} />;
 }
 
 // ============================================================
@@ -136,129 +166,36 @@ export function StepIndicator({
   currentStep: number;
 }) {
   return (
-    <div className="flex items-center justify-between mb-8 px-4">
-      {steps.map((step, i) => (
-        <React.Fragment key={i}>
-          <div className="flex flex-col items-center gap-2">
-            <div
-              className={cn(
-                "w-10 h-10 rounded-xl flex items-center justify-center text-xs font-mono font-bold transition-all duration-300",
-                i < currentStep
-                  ? "bg-gradient-to-br from-lime-500/20 to-emerald-500/20 text-lime-400 border border-lime-500/40 shadow-lg shadow-lime-500/20"
-                  : i === currentStep
-                  ? "bg-gradient-to-br from-blue-500/20 to-cyan-500/20 text-blue-400 border border-blue-500/40 shadow-lg shadow-blue-500/20 scale-110"
-                  : "bg-zinc-900/50 text-zinc-600 border border-zinc-800"
-              )}
-            >
-              {i < currentStep ? (
-                <Check className="w-4 h-4" />
-              ) : (
-                i + 1
-              )}
-            </div>
-            <span className={cn(
-              "text-[11px] font-medium hidden sm:block transition-colors",
-              i <= currentStep ? "text-zinc-200" : "text-zinc-600"
-            )}>
-              {step}
-            </span>
+    <div className="flex items-center justify-between mb-8 px-1 relative">
+      {/* Connecting Line */}
+      <div className="absolute left-0 top-1/2 w-full h-[1px] bg-zinc-800 z-0 -translate-y-1/2" />
+      
+      {steps.map((step, i) => {
+         const isActive = i <= currentStep;
+         const isCurrent = i === currentStep;
+         
+         return (
+        <div key={i} className="relative z-10 flex flex-col items-center gap-2 bg-zinc-950 px-2">
+          <div
+            className={cn(
+              "w-8 h-8 flex items-center justify-center text-xs font-mono font-bold border transition-all duration-300",
+              isCurrent
+                ? "bg-lime-500 text-black border-lime-500" 
+                : isActive 
+                  ? "bg-zinc-900 text-lime-500 border-lime-500/50"
+                  : "bg-black text-zinc-700 border-zinc-800"
+            )}
+          >
+            {isActive && !isCurrent ? <Check className="w-4 h-4" /> : `0${i + 1}`}
           </div>
-          {i < steps.length - 1 && (
-            <div className="relative flex-1 h-px mx-3">
-              <div className={cn(
-                "absolute inset-0 transition-all duration-500",
-                i < currentStep
-                  ? "bg-gradient-to-r from-lime-500/40 to-emerald-500/40"
-                  : "bg-zinc-800"
-              )} />
-              {i < currentStep && (
-                <div className="absolute inset-0 bg-gradient-to-r from-lime-500/60 to-emerald-500/60 animate-pulse" />
-              )}
-            </div>
-          )}
-        </React.Fragment>
-      ))}
-    </div>
-  );
-}
-
-// ============================================================
-// StatCard — Metric display
-// ============================================================
-export function StatCard({
-  label,
-  value,
-  icon,
-  trend,
-  color = "default",
-}: {
-  label: string;
-  value: string | number;
-  icon: string;
-  trend?: { value: string; up: boolean };
-  color?: "default" | "lime" | "blue" | "amber" | "red";
-}) {
-  const colorClasses = {
-    default: "from-zinc-800/50 to-zinc-900/50 border-zinc-700/50",
-    lime: "from-lime-500/10 to-emerald-500/10 border-lime-500/30 shadow-lime-500/10",
-    blue: "from-blue-500/10 to-cyan-500/10 border-blue-500/30 shadow-blue-500/10",
-    amber: "from-amber-500/10 to-orange-500/10 border-amber-500/30 shadow-amber-500/10",
-    red: "from-red-500/10 to-rose-500/10 border-red-500/30 shadow-red-500/10",
-  };
-
-  return (
-    <Card className={cn(
-      "!p-5 !bg-gradient-to-br transition-all duration-300 hover:scale-105",
-      colorClasses[color]
-    )}>
-      <div className="flex items-start justify-between mb-3">
-        <span className="text-2xl filter drop-shadow-lg">{icon}</span>
-        {trend && (
           <span className={cn(
-            "text-xs font-mono font-semibold px-2 py-1 rounded-lg",
-            trend.up
-              ? "bg-lime-500/20 text-lime-400 border border-lime-500/30"
-              : "bg-red-500/20 text-red-400 border border-red-500/30"
+             "text-[10px] font-mono uppercase tracking-wider",
+             isCurrent ? "text-lime-500" : "text-zinc-600"
           )}>
-            {trend.up ? "↑" : "↓"} {trend.value}
+             {step}
           </span>
-        )}
-      </div>
-      <div className="text-2xl font-bold text-zinc-100 font-mono tracking-tight">{value}</div>
-      <div className="text-xs text-zinc-400 mt-1.5 font-medium uppercase tracking-wider">{label}</div>
-    </Card>
-  );
-}
-
-// ============================================================
-// Avatar
-// ============================================================
-export function Avatar({
-  name,
-  size = "md",
-  className = "",
-}: {
-  name: string;
-  size?: "sm" | "md" | "lg";
-  className?: string;
-}) {
-  const sizeClass = { sm: "w-7 h-7 text-[10px]", md: "w-9 h-9 text-xs", lg: "w-12 h-12 text-sm" }[size];
-  const initials = name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
-
-  return (
-    <div
-      className={cn(
-        sizeClass,
-        "rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-300 font-bold",
-        className
-      )}
-    >
-      {initials}
+        </div>
+      )})}
     </div>
   );
 }
@@ -267,26 +204,19 @@ export function Avatar({
 // EmptyState
 // ============================================================
 export function EmptyState({
-  icon,
-  title,
-  description,
-  action,
+   label,
+   action
 }: {
-  icon: string;
-  title: string;
-  description: string;
-  action?: { label: string; href: string };
+   label: string;
+   action?: React.ReactNode;
 }) {
-  return (
-    <Card className="text-center py-16 hover:border-zinc-800" hover={false}>
-      <div className="text-4xl mb-4 opacity-50">{icon}</div>
-      <h3 className="text-lg font-semibold text-zinc-200 mb-1">{title}</h3>
-      <p className="text-zinc-500 text-sm mb-6 max-w-sm mx-auto">{description}</p>
-      {action && (
-        <a href={action.href} className="btn-primary inline-flex items-center gap-2">
-          {action.label} →
-        </a>
-      )}
-    </Card>
-  );
+   return (
+      <div className="border border-dashed border-zinc-800 bg-zinc-900/20 p-12 text-center flex flex-col items-center justify-center gap-4">
+         <div className="w-12 h-12 bg-zinc-900 flex items-center justify-center rounded-full mb-2">
+            <Terminal className="w-6 h-6 text-zinc-600" />
+         </div>
+         <p className="text-zinc-500 font-mono text-sm uppercase">{label}</p>
+         {action}
+      </div>
+   )
 }

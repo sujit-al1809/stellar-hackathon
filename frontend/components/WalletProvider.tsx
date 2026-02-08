@@ -39,11 +39,14 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const checkConnection = async () => {
       try {
-        const connectionResult = await isConnected();
-        if (connectionResult.isConnected) {
-          const addrResult = await getAddress();
-          if (addrResult.address && !addrResult.error) {
-            setPublicKey(addrResult.address);
+        // Only check if Freighter is available
+        if (typeof window !== 'undefined' && (window as any).freighter) {
+          const connectionResult = await isConnected();
+          if (connectionResult.isConnected) {
+            const addrResult = await getAddress();
+            if (addrResult.address && !addrResult.error) {
+              setPublicKey(addrResult.address);
+            }
           }
         }
       } catch (error) {
@@ -56,9 +59,13 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
   const connectWallet = useCallback(async () => {
     setIsConnecting(true);
     try {
+      // Attempt to connect directly using the library. 
+      // We removed the manual 'window.freighter' check as it can fail due to race conditions 
+      // or browser-specific injection timing, confusing users who have it installed.
+      
       const accessResult = await requestAccess();
       if (accessResult.error) {
-        throw new Error(String(accessResult.error));
+        throw new Error(`Freighter error: ${String(accessResult.error)}`);
       }
       // Freighter v6 returns { publicKey }, fallback to getAddress()
       const key = (accessResult as any).publicKey || (accessResult as any).address;
@@ -69,11 +76,16 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
         const addrResult = await getAddress();
         if (addrResult.address && !addrResult.error) {
           setPublicKey(addrResult.address);
+        } else {
+          throw new Error("Could not retrieve wallet address from Freighter");
         }
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error connecting to Freighter:", error);
-      throw error;
+      // Show user-friendly error message
+      const errorMessage = error?.message || "Failed to connect to Freighter wallet";
+      alert(errorMessage);
+      // Don't re-throw, just let the UI handle the disconnected state
     } finally {
       setIsConnecting(false);
     }

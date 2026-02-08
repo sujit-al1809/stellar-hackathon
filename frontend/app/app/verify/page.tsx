@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { useWallet } from "@/components/WalletProvider";
 import { Card, StatusBadge, Spinner, EmptyState } from "@/components/ui";
+import { CheckCircle } from "lucide-react";
 import {
   verifyExecution,
   getExecution,
@@ -195,10 +197,15 @@ export default function VerifyPage() {
 
         {!dataError && (
           <EmptyState
-            icon="✓"
-            title="No P&L Proof Loaded"
-            description="Enter an execution ID above, or submit your P&L proof first."
-            action={{ label: "Submit P&L Proof", href: "/app/execute" }}
+            label="No P&L Proof Loaded"
+            action={
+              <div className="flex flex-col gap-2 mt-2">
+                 <p className="text-xs text-zinc-500">Enter an execution ID above, or submit your P&L proof first.</p>
+                 <Link href="/app/execute" className="text-xs text-lime-400 hover:text-lime-300 underline underline-offset-4">
+                    Submit P&L Proof
+                 </Link>
+              </div>
+            }
           />
         )}
       </div>
@@ -207,6 +214,19 @@ export default function VerifyPage() {
 
   return (
     <div className="max-w-2xl mx-auto">
+      {/* DEMO FLOW: Step Indicator */}
+      <div className="mb-6 bg-gradient-to-r from-purple-500/10 via-blue-500/5 to-emerald-500/10 border border-purple-500/30 p-4 clip-corner flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center">
+            <CheckCircle className="w-5 h-5 text-purple-400" />
+          </div>
+          <div>
+            <div className="text-xs text-purple-400 uppercase font-bold tracking-wider mb-0.5">Demo Flow: Step 4 of 6 — AI Verification</div>
+            <div className="text-sm text-zinc-400">Claude AI analyzes the proof and assigns a confidence score</div>
+          </div>
+        </div>
+      </div>
+
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-zinc-100 mb-1">AI + Oracle P&L Verification</h1>
         <p className="text-zinc-500 text-sm">

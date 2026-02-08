@@ -354,3 +354,132 @@ body > * {
   from { opacity: 0; transform: translateX(20px); }
   to { opacity: 1; transform: translateX(0); }
 }
+
+/* --- Glassmorphism Utilities --- */
+.glass-panel {
+  background: rgba(24, 24, 27, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(24, 24, 27, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(39, 39, 42, 0.7);
+  border-color: rgba(132, 204, 22, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #ecfccb, #84cc16, #3b82f6);
+}
+
+
+/* High-Tech Grid Background */
+.bg-grid-pattern {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(132, 204, 22, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(132, 204, 22, 0.05) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(132, 204, 22, 0.02) 50%,
+    rgba(132, 204, 22, 0.02) 51%,
+    transparent 51%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 50;
+}
+
+
+/* CLIQ-Style Cyber Brutalism */
+.bg-hazard {
+  background: repeating-linear-gradient(
+    45deg,
+    #000,
+    #000 10px,
+    #bef264 10px,
+    #bef264 20px
+  );
+}
+
+.bg-hazard-dark {
+  background: repeating-linear-gradient(
+    45deg,
+    #18181b,
+    #18181b 10px,
+    #27272a 10px,
+    #27272a 20px
+  );
+}
+
+.clip-corner {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%
+  );
+}
+
+.clip-corner-top-right {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    0 100%
+  );
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  color: transparent;
+}
+
+.text-stroke-lime {
+  -webkit-text-stroke: 1px #bef264;
+  color: transparent;
+}
+
+/* Bracket borders for that [ SYSTEM ] look */
+.bracket-border::before,
+.bracket-border::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 100%;
+  border: 1px solid #3f3f46;
+  border-top: none;
+  border-bottom: none;
+  top: 0;
+  transition: all 0.3s ease;
+}
+
+.bracket-border::before { left: 0; border-left: 2px solid #bef264; }
+.bracket-border::after { right: 0; border-right: 2px solid #bef264; }
+
+.bracket-border:hover::before { transform: translateX(-4px); }
+.bracket-border:hover::after { transform: translateX(4px); }
+

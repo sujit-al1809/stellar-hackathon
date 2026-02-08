@@ -400,6 +400,8 @@ export interface StrategyMeta {
   rewardAmount: number;
   stakeAmount?: number;
   profitSharePercent?: number;
+  baseAsset?: string;
+  counterAsset?: string;
   creatorAddress: string;
   createdAt: string;
 }

@@ -5,11 +5,13 @@ import { useSearchParams } from "next/navigation";
 import { useWallet } from "@/components/WalletProvider";
 import { Card, StepIndicator, Spinner } from "@/components/ui";
 import { ProofUploader } from "@/components/ProofUploader";
+import { StellarXIntegration } from "@/components/StellarXIntegration";
 import {
   submitExecution,
   getStrategy,
   getStrategyMeta,
   saveExecutionMeta,
+  getExecutionMeta,
   saveActivity,
   type StrategyMeta,
   type OnChainStrategy,
@@ -80,10 +82,44 @@ export default function ExecutePage() {
     return () => clearTimeout(timeout);
   }, [strategyId]);
 
+  // Load execution meta if available (e.g. from Auto-Agent)
+  useEffect(() => {
+    if (executionId) {
+      const meta = getExecutionMeta(executionId);
+      if (meta && meta.proof) {
+        setTitle(meta.proof.title);
+        setSummary(meta.proof.summary);
+        setSteps(meta.proof.steps);
+      }
+    }
+  }, [executionId]);
+
   const updateStep = (index: number, value: string) => {
     const updated = [...steps];
     updated[index] = value;
     setSteps(updated);
+  };
+
+  // Auto-fill demo proof data - Scalping
+  const fillScalpingDemo = () => {
+    setTitle("Week 1 Results - Bitcoin Scalping Strategy");
+    setSummary("Executed 15 trades following the RSI strategy. Starting capital: $10,000. Ending balance: $11,200. Total P&L: +$1,200 (+12%). Average entry at RSI < 30, exit at RSI > 70. All trades followed strict 2% stop loss. Attached screenshots show TradingView charts, Binance transaction history, and P&L statement.");
+    setSteps([
+      "https://stellar.expert/explorer/testnet/tx/abc123...",
+      "https://www.tradingview.com/chart/BTCUSDT/...",
+      "Binance Trade ID: 789456123"
+    ]);
+  };
+
+  // Auto-fill demo proof data - Yield Farming
+  const fillYieldDemo = () => {
+    setTitle("DeFi Yield Farming - XLM/USDC Pool");
+    setSummary("Provided liquidity to the XLM/USDC pool on Stellar DEX for 7 days. Starting liquidity: 5,000 XLM + 500 USDC. Fees earned: 120 XLM + 12 USDC. Impermanent loss was minimal (<0.1%) due to stable price action. Annualized APY calculated at roughly 18%. Screenshots of liquidity position and fee accrual attached.");
+    setSteps([
+      "https://stellar.expert/explorer/testnet/account/GB...",
+      "Liquidity Token Balance Snapshot", 
+      "Fee Accrual Report CSV"
+    ]);
   };
 
   const executionProof = {
@@ -142,11 +178,31 @@ export default function ExecutePage() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-zinc-100 mb-1">Stake & Execute Trading Strategy</h1>
-        <p className="text-zinc-500 text-sm">
-          Stake refundable XLM • Access strategy • Execute trades • Submit P&L proof
-        </p>
+      <div className="mb-8 flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-zinc-100 mb-1">Stake & Execute Trading Strategy</h1>
+          <p className="text-zinc-500 text-sm">
+            Stake refundable XLM • Access strategy • Execute trades • Submit P&L proof
+          </p>
+        </div>
+        {!executionId && (
+          <div className="flex gap-2">
+            <button
+              onClick={fillScalpingDemo}
+              className="px-3 py-2 bg-lime-500/10 border border-lime-500/30 text-lime-400 text-[10px] font-bold uppercase hover:bg-lime-500/20 hover:border-lime-500/50 transition-all clip-corner flex items-center gap-1"
+            >
+              <span className="text-sm">⚡</span>
+              Demo: Scalping
+            </button>
+            <button
+              onClick={fillYieldDemo}
+              className="px-3 py-2 bg-lime-500/10 border border-lime-500/30 text-lime-400 text-[10px] font-bold uppercase hover:bg-lime-500/20 hover:border-lime-500/50 transition-all clip-corner flex items-center gap-1"
+            >
+              <span className="text-sm">⚡</span>
+              Demo: Yield
+            </button>
+          </div>
+        )}
       </div>
 
       <StepIndicator
@@ -230,6 +286,15 @@ export default function ExecutePage() {
             ))}
           </div>
         </Card>
+      )}
+
+      {/* StellarX Integration - Execute Trades on DEX */}
+      {displayRules.length > 0 && executionId && (
+        <StellarXIntegration
+          strategyRules={displayRules}
+          baseAsset={strategyMeta?.baseAsset || "BTC"}
+          counterAsset={strategyMeta?.counterAsset || "USDC"}
+        />
       )}
 
       {/* Strategy Locked Message - BEFORE STAKING */}
@@ -429,6 +494,27 @@ export default function ExecutePage() {
           <div className="text-xs text-zinc-500 mb-4">
             For Strategy #{strategyId}{strategyMeta ? ` — ${strategyMeta.title}` : ""}
           </div>
+          
+          <div className="mb-6 px-4 md:px-12">
+            <div className="bg-black/40 border border-zinc-800 rounded-lg p-4 text-left">
+                <div className="flex items-center justify-between mb-2">
+                    <div className="text-[10px] uppercase text-zinc-600 font-bold tracking-wider">Automated Proof Generated</div>
+                    <div className="text-[10px] bg-lime-500/10 text-lime-400 px-1.5 py-0.5 rounded border border-lime-500/20">VERIFIABLE</div>
+                </div>
+                <div className="text-sm font-medium text-white mb-1">{title || "Loading..."}</div>
+                <p className="text-xs text-zinc-400 leading-relaxed mb-3">{summary || "Loading..."}</p>
+                {steps.length > 0 && steps[0] !== "" && (
+                   <div className="space-y-1 border-t border-zinc-800/50 pt-2">
+                      {steps.slice(0, 3).map((step, i) => (
+                          <div key={i} className="text-[10px] font-mono text-zinc-500 truncate flex items-center gap-2">
+                             <span className="text-zinc-700">{i+1}.</span> {step}
+                          </div>
+                      ))}
+                   </div>
+                )}
+            </div>
+          </div>
+
           <div className="mb-4 p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
             <div className="text-xs text-blue-400 font-medium mb-1">Next Steps:</div>
             <div className="text-xs text-zinc-500 space-y-1">

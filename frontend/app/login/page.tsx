@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAuth, DEMO_USERS, ROLE_CONFIG, type UserRole } from "@/lib/auth";
+import { useAuth, DEMO_USERS, type UserRole } from "@/lib/auth";
+import { ArrowRight, Terminal, ShieldCheck, Zap } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -42,107 +43,148 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden bg-surface-0">
-      <div className="w-full max-w-md animate-fade-in">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2.5 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-lime-500 flex items-center justify-center text-black font-bold text-base">
-              SF
+    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-[#050505] text-zinc-300 font-mono selection:bg-lime-500/30 selection:text-lime-400">
+      
+      {/* Background Grid */}
+      <div className="fixed inset-0 z-0 bg-grid-pattern opacity-10 pointer-events-none" />
+      
+      {/* Brand Header */}
+      <div className="absolute top-6 left-6 z-20">
+         <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-8 h-8 bg-lime-400 flex items-center justify-center clip-corner-top-right group-hover:bg-white transition-colors">
+               <span className="font-extrabold text-black text-sm italic tracking-tighter">SF</span>
             </div>
-            <span className="text-xl font-semibold text-zinc-100 tracking-tight">
-              StratFlow
-            </span>
-          </Link>
-          <h1 className="text-2xl font-bold text-zinc-100 mb-1">Welcome back</h1>
-          <p className="text-zinc-500 text-sm">Sign in to your account to continue</p>
-        </div>
-
-        {/* Login Form */}
-        <div className="surface-card !p-7">
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-zinc-400 mb-1.5">Email</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="surface-input w-full"
-                placeholder="you@example.com"
-                required
-              />
+            <div className="flex flex-col">
+               <span className="font-bold text-white tracking-widest text-xs uppercase">STRATFLOW</span>
+               <div className="flex items-center gap-1.5">
+                  <span className="w-1 h-1 bg-lime-500 animate-pulse" />
+                  <span className="text-[10px] text-zinc-500 font-mono tracking-wider">SECURE_ACCESS // POWERED_BY_STELLAR</span>
+               </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-zinc-400 mb-1.5">Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="surface-input w-full"
-                placeholder="••••••••"
-                required
-              />
-            </div>
-
-            {error && (
-              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                {error}
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="btn-primary w-full !py-3 text-sm disabled:opacity-50"
-            >
-              {loading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                  </svg>
-                  Signing in...
-                </span>
-              ) : (
-                "Sign In"
-              )}
-            </button>
-          </form>
-
-          <div className="mt-5 text-center text-sm text-zinc-500">
-            Don&apos;t have an account?{" "}
-            <Link href="/signup" className="text-lime-400 hover:text-lime-300 font-medium transition-colors">
-              Sign up
-            </Link>
-          </div>
-        </div>
-
-        {/* Quick Demo Access */}
-        <div className="mt-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="flex-1 h-px bg-zinc-800" />
-            <span className="text-xs text-zinc-600 font-medium uppercase tracking-wider">Quick Demo</span>
-            <div className="flex-1 h-px bg-zinc-800" />
-          </div>
-
-          <div className="grid grid-cols-2 gap-2.5">
-            {(Object.entries(ROLE_CONFIG) as [UserRole, typeof ROLE_CONFIG[UserRole]][]).map(([role, config]) => (
-              <button
-                key={role}
-                onClick={() => handleDemoLogin(role)}
-                disabled={loading}
-                className={`surface-card !p-3 flex items-center gap-2.5 text-left hover:!border-zinc-600 transition-all disabled:opacity-50`}
-              >
-                <span className="text-lg text-lime-400">{config.icon}</span>
-                <div>
-                  <div className="text-sm font-medium text-zinc-200">{config.label}</div>
-                  <div className="text-[10px] text-zinc-600">Demo login</div>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
+         </Link>
       </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-6 right-6 text-[10px] font-mono text-zinc-600 hidden md:block text-right">
+         <div>ENCRYPTION: SHIELD_256</div>
+         <div>AUTH_NODE: US_EAST_1</div>
+      </div>
+
+      <div className="relative z-10 w-full max-w-md p-6">
+        
+        <div className="mb-8 text-center">
+            <h1 className="text-3xl font-black text-white uppercase tracking-tight mb-2">Identify</h1>
+            <p className="text-zinc-500 text-xs font-mono uppercase">Enter your credentials to access the protocol</p>
+        </div>
+
+        <div className="group relative p-1">
+             {/* Card Border Effect */}
+            <div className="absolute inset-0 border border-zinc-800 transition-colors group-hover:border-lime-500/50 clip-corner bg-black" />
+            
+            {/* Corner Accents */}
+            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20 group-hover:border-lime-400 transition-colors z-20" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20 group-hover:border-lime-400 transition-colors z-20" />
+
+            <div className="relative z-10 p-8 bg-zinc-950/50 backdrop-blur-sm clip-corner">
+               
+              {error && (
+                <div className="mb-6 bg-red-500/10 border border-red-500/20 p-3 text-red-500 text-xs font-bold uppercase flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-red-500 rounded-sm animate-pulse" />
+                  Error: {error}
+                </div>
+              )}
+
+              <form onSubmit={handleLogin} className="space-y-5">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold uppercase text-zinc-500 ml-1">Email_Address</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full bg-black border border-zinc-800 p-3 text-sm text-white focus:outline-none focus:border-lime-500 focus:ring-1 focus:ring-lime-500 placeholder:text-zinc-700 transition-all font-mono"
+                    placeholder="user@stratflow.io"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold uppercase text-zinc-500 ml-1">Password</label>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full bg-black border border-zinc-800 p-3 text-sm text-white focus:outline-none focus:border-lime-500 focus:ring-1 focus:ring-lime-500 placeholder:text-zinc-700 transition-all font-mono"
+                    placeholder="••••••••"
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-lime-400 text-black font-black uppercase tracking-wider py-3 mt-2 clip-corner hover:bg-white hover:translate-y-[-1px] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {loading ? "Authenticating..." : "Establish_Link"}
+                  {!loading && <ArrowRight className="w-4 h-4 stroke-[3px]" />}
+                </button>
+              </form>
+
+              <div className="my-8 flex items-center gap-4">
+                <div className="h-[1px] bg-zinc-900 flex-1" />
+                <span className="text-[10px] uppercase text-zinc-700 font-bold">Or_Use_Test_Key</span>
+                <div className="h-[1px] bg-zinc-900 flex-1" />
+              </div>
+
+              <div className="space-y-3">
+                <div className="text-[10px] text-zinc-600 uppercase font-bold mb-2">Demo Accounts:</div>
+                {[
+                  { email: "trader@stratflow.io", role: "Trader", icon: Zap },
+                  { email: "expert@stratflow.io", role: "Expert", icon: Terminal },
+                  { email: "verifier@stratflow.io", role: "Verifier", icon: ShieldCheck },
+                ].map((d) => (
+                  <button
+                    key={d.email}
+                    type="button"
+                    onClick={() => {
+                      setEmail(d.email);
+                      setPassword("demo123");
+                    }}
+                    disabled={loading}
+                    className="w-full flex items-center justify-between p-3 border border-zinc-800 bg-black/50 hover:bg-zinc-900 hover:border-lime-500/30 transition-all text-left group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-zinc-900 flex items-center justify-center border border-zinc-800 group-hover:border-lime-500/50 transition-colors clip-corner">
+                        <d.icon className="w-4 h-4 text-zinc-500 group-hover:text-lime-400" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-xs font-bold text-zinc-300 group-hover:text-white uppercase">{d.role}</span>
+                        <span className="text-[10px] text-zinc-600 font-mono">{d.email}</span>
+                      </div>
+                    </div>
+                    <div className="text-[10px] text-zinc-600 group-hover:text-lime-400 uppercase font-mono">
+                      demo123
+                    </div>
+                  </button>
+                ))}
+                <div className="text-[9px] text-zinc-700 uppercase text-center pt-2">
+                  Click to auto-fill credentials
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <p className="text-center mt-8 text-xs text-zinc-600 uppercase tracking-wide">
+          New Connection?{" "}
+          <Link href="/signup" className="text-lime-500 font-bold hover:text-white hover:underline decoration-1 underline-offset-4">
+            Initialize_Protocol
+          </Link>
+        </p>
+      </div>
+
+       {/* Hazard Strip Bottom */}
+        <div className="absolute bottom-0 w-full h-6 bg-black border-t border-zinc-900 flex items-center justify-between px-6 overflow-hidden z-10">
+           <div className="w-full h-2 bg-hazard opacity-30" />
+        </div>
     </div>
   );
 }

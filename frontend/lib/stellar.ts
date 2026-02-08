@@ -3,15 +3,19 @@
 // ============================================================
 
 import * as StellarSdk from "@stellar/stellar-sdk";
-import { rpc as StellarRpc } from "@stellar/stellar-sdk";
+import { rpc as StellarRpc, Horizon } from "@stellar/stellar-sdk";
 import {
   CONTRACT_ID,
   SOROBAN_RPC_URL,
   NETWORK_PASSPHRASE,
+  HORIZON_URL,
 } from "./constants";
 
-// Create a Soroban RPC server instance
+// Create a Soroban RPC server instance (for smart contract calls)
 export const server = new StellarRpc.Server(SOROBAN_RPC_URL);
+
+// Create a Horizon server instance (for account/operations queries)
+export const horizonServer = new Horizon.Server(HORIZON_URL);
 
 /**
  * Build, sign, and submit a Soroban contract invocation transaction.

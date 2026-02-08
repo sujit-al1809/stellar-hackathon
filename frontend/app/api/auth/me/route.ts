@@ -7,12 +7,12 @@ export async function GET() {
   try {
     const session = await getSession();
     if (!session) {
-      return NextResponse.json({ user: null }, { status: 401 });
+      return NextResponse.json({ user: null }, { status: 200 });
     }
 
     const user = findUserById(session.userId);
     if (!user) {
-      return NextResponse.json({ user: null }, { status: 401 });
+      return NextResponse.json({ user: null }, { status: 200 });
     }
 
     return NextResponse.json({

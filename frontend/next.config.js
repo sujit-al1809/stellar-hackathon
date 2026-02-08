@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Force rebuild
   reactStrictMode: true,
   webpack: (config) => {
     config.resolve.fallback = {

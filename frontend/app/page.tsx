@@ -2,264 +2,260 @@
 
 import Link from "next/link";
 import { useAuth } from "@/lib/auth";
-import { ArrowRight, Check } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, Terminal, Cpu, ShieldCheck, Activity, Zap, Bot } from "lucide-react";
 
 export default function HomePage() {
   const { user } = useAuth();
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-[#050505] text-zinc-300 font-sans selection:bg-lime-400 selection:text-black overflow-x-hidden">
+      
+      {/* Decorative Background Grid */}
+      <div className="fixed inset-0 z-0 bg-grid-pattern opacity-20 pointer-events-none" />
+      
       {/* Navbar */}
-      <nav className="border-b border-zinc-900">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-lime-500 flex items-center justify-center text-black font-bold text-sm">
-              S
+      <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-black/90 backdrop-blur-md">
+        <div className="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
+          
+          {/* Logo Area */}
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 bg-lime-400 flex items-center justify-center clip-corner-top-right group-hover:bg-white transition-colors">
+              <span className="font-extrabold text-black text-xl italic tracking-tighter">SF</span>
             </div>
-            <span className="text-lg font-semibold text-zinc-100">
-              StratFlow
-            </span>
+            <div className="flex flex-col">
+              <span className="font-bold text-white tracking-widest text-sm uppercase">STRATFLOW</span>
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 bg-lime-500 animate-pulse" />
+                <span className="text-[10px] text-zinc-500 font-mono tracking-wider">POWERED_BY_STELLAR</span>
+              </div>
+            </div>
           </Link>
-          <div className="flex items-center gap-3">
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-12 text-xs font-bold tracking-widest uppercase text-zinc-500">
+            {["Protocol", "Network", "Oracles", "Governance", "Docs"].map((item) => (
+              <Link key={item} href={`#${item.toLowerCase()}`} className="hover:text-lime-400 transition-colors relative group">
+                [{item}]
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-lime-400 group-hover:w-full transition-all duration-300" />
+              </Link>
+            ))}
+          </div>
+
+          {/* Actions */}
+          <div className="flex items-center gap-6">
             {user ? (
-              <Link href="/app" className="btn-primary !py-2 !px-5">
-                Dashboard
+               <Link href="/app" className="group relative px-6 py-2.5 bg-zinc-900 border border-zinc-700 text-xs font-mono font-bold uppercase text-white hover:border-lime-400 hover:text-lime-400 transition-all clip-corner">
+                Open_Dashboard
+                <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-zinc-500 group-hover:border-lime-400 transition-colors" />
+                <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-zinc-500 group-hover:border-lime-400 transition-colors" />
               </Link>
             ) : (
-              <>
-                <Link href="/login" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors px-4 py-2">
-                  Sign In
-                </Link>
-                <Link href="/signup" className="btn-primary !py-2 !px-5">
-                  Get Started
-                </Link>
-              </>
+              <div className="flex items-center gap-6">
+                 <Link href="/login" className="text-xs font-bold uppercase tracking-widest hover:text-white transition-colors">Sign_In</Link> 
+                 <Link href="/signup" className="bg-lime-400 text-black px-8 py-3 font-extrabold uppercase text-sm tracking-wide clip-corner hover:bg-white transition-colors flex items-center gap-2">
+                    Initialize <Zap className="w-4 h-4 fill-black" />
+                 </Link>
+              </div>
             )}
           </div>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="max-w-4xl mx-auto px-6 pt-32 pb-24 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-lime-500" />
-          <span className="text-zinc-400">Live on Stellar Testnet</span>
-        </div>
-
-        <h1 className="text-5xl md:text-6xl font-bold text-zinc-100 mb-6 tracking-tight">
-          Trade strategies.
-          <br />
-          Pay when you profit.
-        </h1>
-
-        <p className="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Stake refundable XLM to unlock expert strategies. Execute trades. Submit proof.
-          Experts earn 20% of your profits — verified by AI on Stellar.
-        </p>
-
-        <div className="flex items-center justify-center gap-3">
-          <Link href="/signup" className="btn-primary !py-3 !px-8 flex items-center gap-2">
-            Get Started <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link href="/login" className="btn-secondary !py-3 !px-8">
-            Sign In
-          </Link>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="max-w-5xl mx-auto px-6 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-zinc-100 mb-3">How it works</h2>
-          <p className="text-zinc-400">Four simple steps</p>
-        </div>
-
-        <div className="grid md:grid-cols-4 gap-8">
-          {[
-            {
-              num: "01",
-              title: "Stake",
-              desc: "Stake 50 XLM to unlock strategy (100% refundable)"
-            },
-            {
-              num: "02",
-              title: "Execute",
-              desc: "Follow rules, make trades with your capital"
-            },
-            {
-              num: "03",
-              title: "Verify",
-              desc: "Submit proof, AI + Oracle verify accuracy"
-            },
-            {
-              num: "04",
-              title: "Profit",
-              desc: "Get stake back + 80% profit. Expert gets 20%"
-            },
-          ].map((step) => (
-            <div key={step.num} className="text-center">
-              <div className="text-xs text-lime-500 font-mono font-bold mb-3">{step.num}</div>
-              <h3 className="text-lg font-semibold text-zinc-100 mb-2">{step.title}</h3>
-              <p className="text-sm text-zinc-500 leading-relaxed">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Example */}
-      <section className="max-w-4xl mx-auto px-6 py-20">
-        <div className="border border-zinc-800 rounded-xl p-8 bg-zinc-900/30">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-zinc-100 mb-2">Real example</h3>
-            <p className="text-zinc-400">See how the profit share works</p>
+      {/* Hero Section */}
+      <section className="relative z-10 pt-40 flex flex-col items-center justify-center min-h-screen text-center">
+        
+        <div className="max-w-[1400px] mx-auto px-6 w-full relative mb-16">
+          
+          {/* Decorations */}
+          <div className="absolute top-0 left-6 text-[10px] font-mono text-zinc-700 flex flex-col gap-1 hidden md:flex text-left">
+             <span>CAM: VIRTUAL_01</span>
+             <span>LENS: 24MM_PRIME</span>
+             <span>ISO: NATIVE</span>
+          </div>
+          
+          <div className="absolute top-0 right-6 flex flex-col items-end hidden md:flex">
+             <div className="flex items-center gap-2 text-lime-500 font-mono text-xs">
+                SYS_ONLINE <Activity className="w-3 h-3" />
+             </div>
+             <div className="text-[10px] text-zinc-700 font-mono mt-1">
+                MEM: 64GB_OK
+             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            {/* Scenario */}
-            <div className="space-y-3">
-              <div className="text-xs text-lime-500 font-semibold uppercase tracking-wider mb-4">Scenario</div>
-              {[
-                "Stake 50 XLM to unlock strategy",
-                "Trade with $10,000 capital",
-                "End with $12,000 (+$2,000 profit)",
-                "Submit proof, AI verifies",
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3 text-sm text-zinc-300">
-                  <Check className="w-4 h-4 text-lime-500 mt-0.5 shrink-0" />
-                  <span>{item}</span>
-                </div>
-              ))}
+          <motion.div 
+             initial={{ opacity: 0, scale: 0.9 }}
+             animate={{ opacity: 1, scale: 1 }}
+             transition={{ duration: 0.5 }}
+             className="relative z-20"
+          >
+            <div className="inline-flex items-center gap-3 px-4 py-1 border border-zinc-800 bg-zinc-900/50 mb-8 rounded-none">
+              <span className="w-2 h-2 bg-lime-500 animate-pulse" />
+              <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-400">POWERED BY STELLAR</span>
             </div>
 
-            {/* Payout */}
-            <div className="space-y-4">
-              <div className="text-xs text-lime-500 font-semibold uppercase tracking-wider mb-4">Payout</div>
-
-              <div className="p-4 rounded-lg border border-emerald-900/50 bg-emerald-950/30">
-                <div className="text-xs text-emerald-400 mb-2">You receive</div>
-                <div className="text-2xl font-bold text-emerald-400">+$1,600</div>
-                <div className="text-xs text-zinc-500 mt-1">Stake back + 80% of profit</div>
-              </div>
-
-              <div className="p-4 rounded-lg border border-blue-900/50 bg-blue-950/30">
-                <div className="text-xs text-blue-400 mb-2">Expert receives</div>
-                <div className="text-2xl font-bold text-blue-400">+$400</div>
-                <div className="text-xs text-zinc-500 mt-1">20% of your profit</div>
-              </div>
+            <h1 className="text-7xl md:text-[8rem] font-black leading-[0.85] tracking-tighter text-white mb-6 uppercase">
+              Trade. Prove.<br />
+              <span className="text-stroke-lime text-transparent">Get Paid.</span>
+            </h1>
+            
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 md:opacity-100">
+               <h1 className="text-[10rem] font-black leading-none tracking-tighter text-white opacity-[0.03] select-none text-stroke blur-sm">
+                  STRATFLOW
+               </h1>
             </div>
-          </div>
 
-          {/* Outcomes */}
-          <div className="pt-6 border-t border-zinc-800">
-            <div className="text-xs text-zinc-600 uppercase tracking-wider mb-4">Other outcomes</div>
-            <div className="grid sm:grid-cols-3 gap-3">
-              <div className="p-3 rounded-lg border border-zinc-800 bg-zinc-900/50">
-                <div className="text-xs font-semibold text-zinc-300 mb-1">You lose money</div>
-                <div className="text-xs text-zinc-500">Get stake back. Expert gets $0.</div>
-              </div>
-              <div className="p-3 rounded-lg border border-zinc-800 bg-zinc-900/50">
-                <div className="text-xs font-semibold text-zinc-300 mb-1">You ghost</div>
-                <div className="text-xs text-zinc-500">Lose stake. Expert gets it.</div>
-              </div>
-              <div className="p-3 rounded-lg border border-zinc-800 bg-zinc-900/50">
-                <div className="text-xs font-semibold text-zinc-300 mb-1">Fake proof</div>
-                <div className="text-xs text-zinc-500">Lose stake. Get banned.</div>
-              </div>
+            <p className="text-zinc-500 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-mono uppercase tracking-wide">
+              The Protocol for <span className="text-white bg-zinc-900 px-1">Verifiable</span> Strategy Execution.
+              <br />Execute on <span className="text-blue-400">StellarX DEX</span> • Prove with AI • Get Paid.
+            </p>
+
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+              <Link href="/signup" className="group relative w-full md:w-auto">
+                <div className="absolute inset-0 bg-lime-500 blur-lg opacity-40 group-hover:opacity-75 transition-opacity duration-300" />
+                <button className="relative bg-lime-400 text-black px-12 py-5 font-black uppercase tracking-wider text-lg clip-corner hover:translate-y-[-2px] hover:shadow-xl transition-all w-full md:w-auto flex items-center justify-center gap-3">
+                  Start_Protocol <ArrowRight className="w-5 h-5 stroke-[3px]" />
+                </button>
+              </Link>
+              
+              <Link href="#demo" className="w-full md:w-auto border border-zinc-800 bg-black text-zinc-400 px-12 py-5 font-bold uppercase tracking-wider text-lg clip-corner hover:bg-zinc-900 hover:text-white hover:border-zinc-600 transition-all flex items-center justify-center">
+                System_Data
+              </Link>
             </div>
-          </div>
+          </motion.div>
+        </div>
+
+        {/* Marquee Banner Moved to Bottom of Hero */}
+        <div className="w-full border-y border-lime-500/20 bg-black/50 backdrop-blur-sm overflow-hidden py-12 relative z-10 mt-auto">
+          <div className="absolute inset-0 bg-hazard opacity-5 pointer-events-none" />
+          <motion.div 
+            animate={{ x: [0, -1000] }}
+            transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+            className="whitespace-nowrap flex gap-16 text-5xl md:text-8xl font-black font-sans text-transparent text-stroke-lime uppercase tracking-tighter opacity-80"
+          >
+            {Array(10).fill("UNLEASH THE ALGORITHM • PROVE PROFIT • GET PAID • ").map((text, i) => (
+              <span key={i}>{text}</span>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Hazard Strip Bottom */}
+        <div className="w-full h-8 bg-black border-t border-zinc-900 flex items-center justify-between px-6 overflow-hidden">
+           <div className="w-full h-2 bg-hazard opacity-30" />
         </div>
       </section>
 
-      {/* Trust */}
-      <section className="max-w-4xl mx-auto px-6 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-zinc-100 mb-3">Built on trust</h2>
-          <p className="text-zinc-400">Enforced by Soroban smart contracts</p>
-        </div>
+      {/* Feature Grid */}
+      <section className="py-32 border-t border-zinc-900 bg-black relative">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Inspo",
+                sub: "Strategy Discovery",
+                desc: "Find algorithmic strategies verified by ZK-proofs.",
+                icon: ShieldCheck
+              },
+              {
+                title: "Pricing",
+                sub: "Performance Based",
+                desc: "0% Management Fee. 20% Success Fee on profits only.",
+                icon: Activity
+              },
+              {
+                title: "Status",
+                sub: "Live Execution",
+                desc: "Real-time on-chain verification via Stellar Oracles.",
+                icon: Terminal
+              },
+              {
+                title: "Stack",
+                sub: "Soroban Native",
+                desc: "Built with Rust smart contracts for max speed.",
+                icon: Cpu
+              },
+              {
+                title: "DEX",
+                sub: "StellarX Trading",
+                desc: "One-click execution on Stellar's native DEX. Fast, cheap, non-custodial.",
+                icon: Zap
+              },
+              {
+                title: "Net",
+                sub: "Global Access",
+                desc: "Deploy capital from anywhere. Trade 24/7 worldwide.",
+                icon: Terminal
+              },
+              {
+                title: "AI",
+                sub: "Agent Execution",
+                desc: "AI agents auto-execute strategies with DeFi integrations & Polymarket.",
+                icon: Bot
+              }
+            ].map((card, i) => (
+              <div key={i} className="group relative p-1">
+                 {/* Card Border Effect */}
+                <div className="absolute inset-0 border border-zinc-800 transition-colors group-hover:border-lime-500/50 clip-corner" />
+                
+                {/* Corner Accents */}
+                <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-zinc-600 group-hover:border-lime-400 transition-colors" />
+                <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-zinc-600 group-hover:border-lime-400 transition-colors" />
 
-        <div className="grid sm:grid-cols-2 gap-3">
-          {[
-            "Stake is 100% refundable",
-            "Experts only earn when you profit",
-            "Oracle verifies all P&L",
-            "Ghost? Lose stake automatically",
-            "Profitable? Keep 80% of gains",
-            "Perfect aligned incentives",
-          ].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 p-4 rounded-lg border border-zinc-800 bg-zinc-900/30">
-              <Check className="w-4 h-4 text-lime-500 shrink-0" />
-              <span className="text-sm text-zinc-300">{item}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Strategies */}
-      <section className="max-w-5xl mx-auto px-6 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-zinc-100 mb-3">Popular strategies</h2>
-          <p className="text-zinc-400">From crypto to DeFi</p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {[
-            { title: "Crypto Day Trading", stake: "50", profit: "20%" },
-            { title: "DeFi Yield Farming", stake: "75", profit: "25%" },
-            { title: "Swing Trading", stake: "40", profit: "15%" },
-            { title: "Arbitrage", stake: "100", profit: "30%" },
-            { title: "Risk Management", stake: "30", profit: "10%" },
-            { title: "Trend Following", stake: "60", profit: "20%" },
-          ].map((strategy, i) => (
-            <div key={i} className="p-5 rounded-lg border border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 transition-colors">
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="text-sm font-semibold text-zinc-100">{strategy.title}</h3>
-                <div className="text-right">
-                  <div className="text-xs font-mono text-lime-400">{strategy.stake} XLM</div>
-                  <div className="text-xs font-mono text-blue-400">{strategy.profit}</div>
+                <div className="bg-zinc-950 p-8 h-full clip-corner relative z-10 hover:bg-zinc-900/50 transition-colors">
+                  <div className="flex justify-between items-start mb-6">
+                    <span className="text-[10px] font-mono text-zinc-600 uppercase border border-zinc-800 px-2 py-1 rounded-sm group-hover:text-lime-500 group-hover:border-lime-500/30 transition-colors">
+                      [{card.title}]
+                    </span>
+                    <card.icon className="w-5 h-5 text-zinc-700 group-hover:text-lime-400 transition-colors" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-black text-white uppercase mb-3 tracking-tight">{card.sub}</h3>
+                  <p className="text-zinc-500 font-mono text-xs leading-relaxed uppercase">
+                    {card.desc}
+                  </p>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="max-w-3xl mx-auto px-6 py-20">
-        <div className="text-center p-12 rounded-xl border border-zinc-800 bg-zinc-900/30">
-          <h2 className="text-3xl font-bold text-zinc-100 mb-4">Ready to start?</h2>
-          <p className="text-zinc-400 mb-8">Join traders on Stellar</p>
-          <div className="flex items-center justify-center gap-3">
-            <Link href="/signup" className="btn-primary !py-3 !px-8 flex items-center gap-2">
-              Get Started <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link href="/login" className="btn-secondary !py-3 !px-8">
-              Sign In
-            </Link>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-900 py-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="w-8 h-8 rounded-lg bg-lime-500 flex items-center justify-center text-black font-bold text-sm">
-              S
+      <footer className="border-t border-zinc-900 bg-black pt-20 pb-10">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-end gap-10">
+            <div>
+              <h2 className="text-[4rem] font-black text-white leading-none tracking-tighter mb-4 text-stroke">
+                STRATFLOW
+              </h2>
+              <div className="flex gap-2">
+                 <div className="px-3 py-1 bg-lime-400 text-black font-bold text-xs uppercase clip-corner-top-right">
+                    Windows
+                 </div>
+                 <div className="px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-400 font-bold text-xs uppercase clip-corner-top-right">
+                    MacOS_Universal
+                 </div>
+              </div>
             </div>
-            <span className="text-lg font-semibold text-zinc-100">StratFlow</span>
+            
+            <div className="grid grid-cols-2 gap-x-12 gap-y-4 text-xs font-mono text-zinc-500 uppercase">
+               <a href="#" className="hover:text-lime-400 transition-colors">> Documentation</a>
+               <a href="#" className="hover:text-lime-400 transition-colors">> GitHub_Repo</a>
+               <a href="#" className="hover:text-lime-400 transition-colors">> Governance</a>
+               <a href="#" className="hover:text-lime-400 transition-colors">> Audit_Log</a>
+            </div>
           </div>
-          <p className="text-center text-sm text-zinc-500 mb-6">
-            Decentralized trading strategy marketplace on Stellar
-          </p>
-          <div className="flex items-center justify-center flex-wrap gap-2 text-xs text-zinc-600">
-            {["Stellar", "Soroban", "Next.js", "TypeScript", "AI Verified"].map((tech) => (
-              <span key={tech} className="px-3 py-1 rounded border border-zinc-900 bg-zinc-950">
-                {tech}
-              </span>
-            ))}
+          
+          <div className="mt-20 pt-6 border-t border-zinc-900 flex justify-between items-center text-[10px] font-mono text-zinc-600 uppercase">
+             <span>© 2026 StratFlow Protocol. All Systems Operational.</span>
+             <span className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-green-900 rounded-full" />
+                Network_Stable
+             </span>
           </div>
         </div>
       </footer>
+
     </div>
   );
 }

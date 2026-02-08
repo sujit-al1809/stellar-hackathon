@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth, ROLE_CONFIG, type UserRole } from "@/lib/auth";
+import { ArrowLeft, ArrowRight, Zap, Check } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -40,137 +42,157 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden bg-surface-0">
-      <div className="w-full max-w-lg animate-fade-in">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2.5 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-lime-500 flex items-center justify-center text-black font-bold text-base">
-              SF
+    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-[#050505] text-zinc-300 font-mono selection:bg-lime-500/30 selection:text-lime-400">
+      
+      {/* Background Grid */}
+      <div className="fixed inset-0 z-0 bg-grid-pattern opacity-10 pointer-events-none" />
+      
+      {/* Brand Header */}
+      <div className="absolute top-6 left-6 z-20">
+         <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-8 h-8 bg-lime-400 flex items-center justify-center clip-corner-top-right group-hover:bg-white transition-colors">
+               <span className="font-extrabold text-black text-sm italic tracking-tighter">SF</span>
             </div>
-            <span className="text-xl font-semibold text-zinc-100 tracking-tight">
-              StratFlow
-            </span>
-          </Link>
-          <h1 className="text-2xl font-bold text-zinc-100 mb-1">Create your account</h1>
-          <p className="text-zinc-500 text-sm">Join the strategy execution protocol</p>
-        </div>
-
-        <div className="surface-card !p-7">
-          <form onSubmit={handleSignup} className="space-y-4">
-            {/* Name */}
-            <div>
-              <label className="block text-sm font-medium text-zinc-400 mb-1.5">Full Name</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="surface-input w-full"
-                placeholder="John Doe"
-                required
-              />
+            <div className="flex flex-col">
+               <span className="font-bold text-white tracking-widest text-xs uppercase">STRATFLOW</span>
+               <div className="flex items-center gap-1.5">
+                  <span className="w-1 h-1 bg-lime-500 animate-pulse" />
+                  <span className="text-[10px] text-zinc-500 font-mono tracking-wider">NEW_ENTRANT // POWERED_BY_STELLAR</span>
+               </div>
             </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium text-zinc-400 mb-1.5">Email</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="surface-input w-full"
-                placeholder="you@example.com"
-                required
-              />
-            </div>
-
-            {/* Role Selection */}
-            <div>
-              <label className="block text-sm font-medium text-zinc-400 mb-2.5">Choose your role</label>
-              <div className="grid grid-cols-2 gap-2.5">
-                {(Object.entries(ROLE_CONFIG) as [UserRole, typeof ROLE_CONFIG[UserRole]][]).map(([roleKey, config]) => (
-                  <button
-                    key={roleKey}
-                    type="button"
-                    onClick={() => setRole(roleKey)}
-                    className={`p-3.5 rounded-lg border text-left transition-all duration-200 ${
-                      role === roleKey
-                        ? "bg-lime-500/10 border-lime-500/30 ring-1 ring-lime-500/20 ring-offset-0"
-                        : "bg-zinc-900/50 border-zinc-800 hover:border-zinc-700"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-lime-400 text-sm">{config.icon}</span>
-                      <span className={`text-sm font-semibold ${role === roleKey ? "text-lime-400" : "text-zinc-300"}`}>
-                        {config.label}
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-zinc-600 leading-relaxed">{config.description}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Password */}
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-1.5">Password</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="surface-input w-full"
-                  placeholder="••••••••"
-                  required
-                  minLength={6}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-1.5">Confirm</label>
-                <input
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="surface-input w-full"
-                  placeholder="••••••••"
-                  required
-                />
-              </div>
-            </div>
-
-            {error && (
-              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                {error}
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="btn-primary w-full !py-3 text-sm disabled:opacity-50"
-            >
-              {loading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                  </svg>
-                  Creating account...
-                </span>
-              ) : (
-                `Create ${ROLE_CONFIG[role].label} Account`
-              )}
-            </button>
-          </form>
-
-          <div className="mt-5 text-center text-sm text-zinc-500">
-            Already have an account?{" "}
-            <Link href="/login" className="text-lime-400 hover:text-lime-300 font-medium transition-colors">
-              Sign in
-            </Link>
-          </div>
-        </div>
+         </Link>
       </div>
+
+       {/* Back Button */}
+      <div className="absolute top-6 right-6 z-20">
+        <Link href="/" className="text-[10px] font-bold uppercase text-zinc-500 hover:text-lime-400 flex items-center gap-2 transition-colors">
+           <ArrowLeft className="w-3 h-3" /> Abort_Sequence
+        </Link>
+      </div>
+
+      <div className="relative z-10 w-full max-w-lg p-6 my-10">
+        
+        <div className="mb-8 text-center">
+            <h1 className="text-3xl font-black text-white uppercase tracking-tight mb-2">Register</h1>
+            <p className="text-zinc-500 text-xs font-mono uppercase">Initialize new protocol identity</p>
+        </div>
+
+        <div className="group relative p-1">
+             {/* Card Border Effect */}
+            <div className="absolute inset-0 border border-zinc-800 transition-colors group-hover:border-lime-500/50 clip-corner bg-black" />
+            
+            {/* Corner Accents */}
+            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20 group-hover:border-lime-400 transition-colors z-20" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20 group-hover:border-lime-400 transition-colors z-20" />
+
+            <div className="relative z-10 p-8 bg-zinc-950/50 backdrop-blur-sm clip-corner">
+               
+              {error && (
+                <div className="mb-6 bg-red-500/10 border border-red-500/20 p-3 text-red-500 text-xs font-bold uppercase flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-red-500 rounded-sm animate-pulse" />
+                  Error: {error}
+                </div>
+              )}
+
+              <form onSubmit={handleSignup} className="space-y-5">
+                
+                <div className="grid grid-cols-2 gap-4">
+                  {Object.entries(ROLE_CONFIG).map(([key, config]) => (
+                    <div
+                      key={key}
+                      onClick={() => setRole(key as UserRole)}
+                      className={cn(
+                        "cursor-pointer p-3 border text-center transition-all relative clip-corner",
+                        role === key
+                          ? "bg-lime-500/10 border-lime-500 text-white"
+                          : "bg-black border-zinc-800 text-zinc-500 hover:border-zinc-700"
+                      )}
+                    >
+                      {role === key && (
+                        <div className="absolute top-1 right-1 text-lime-500">
+                          <Check className="w-3 h-3" />
+                        </div>
+                      )}
+                      <div className="text-[10px] font-bold uppercase tracking-widest">{config.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold uppercase text-zinc-500 ml-1">Full_Name</label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full bg-black border border-zinc-800 p-3 text-sm text-white focus:outline-none focus:border-lime-500 focus:ring-1 focus:ring-lime-500 placeholder:text-zinc-700 transition-all font-mono"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold uppercase text-zinc-500 ml-1">Email_Address</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full bg-black border border-zinc-800 p-3 text-sm text-white focus:outline-none focus:border-lime-500 focus:ring-1 focus:ring-lime-500 placeholder:text-zinc-700 transition-all font-mono"
+                    placeholder="user@stratflow.io"
+                    required
+                  />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-bold uppercase text-zinc-500 ml-1">Key_Phrase (Password)</label>
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full bg-black border border-zinc-800 p-3 text-sm text-white focus:outline-none focus:border-lime-500 focus:ring-1 focus:ring-lime-500 placeholder:text-zinc-700 transition-all font-mono"
+                      placeholder="••••••••"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-bold uppercase text-zinc-500 ml-1">Confirm_Phrase</label>
+                    <input
+                      type="password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className="w-full bg-black border border-zinc-800 p-3 text-sm text-white focus:outline-none focus:border-lime-500 focus:ring-1 focus:ring-lime-500 placeholder:text-zinc-700 transition-all font-mono"
+                      placeholder="••••••••"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                   <button
+                     type="submit"
+                     disabled={loading}
+                     className="w-full bg-lime-400 text-black font-black uppercase tracking-wider py-3 clip-corner hover:bg-white hover:translate-y-[-1px] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                   >
+                     {loading ? "Processing..." : "Create_Identity"}
+                     {!loading && <Zap className="w-4 h-4 fill-black" />}
+                   </button>
+                </div>
+              </form>
+            </div>
+        </div>
+
+        <p className="text-center mt-8 text-xs text-zinc-600 uppercase tracking-wide">
+          Already Integrated?{" "}
+          <Link href="/login" className="text-lime-500 font-bold hover:text-white hover:underline decoration-1 underline-offset-4">
+            Access_Terminal
+          </Link>
+        </p>
+      </div>
+
+       {/* Hazard Strip Bottom */}
+        <div className="absolute bottom-0 w-full h-6 bg-black border-t border-zinc-900 flex items-center justify-between px-6 overflow-hidden z-10">
+           <div className="w-full h-2 bg-hazard opacity-30" />
+        </div>
     </div>
   );
 }
