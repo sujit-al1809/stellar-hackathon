@@ -138,9 +138,6 @@ Reward Stream
 
 <br>
 
----
-
-<br>
 
 ## Contract Address
 
@@ -153,79 +150,6 @@ Reward Stream
 **Explorer:** [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CBJRILB6ZOEUWJ7Q5WGXL7PZZJDB7M7YUOFCOYAV3QYZYHGLB7FW5Q73)
 
 </div>
-
-<br>
-
----
-
-<br>
-
-## Features
-
-<table>
-<tr>
-<td width="50%">
-
-### For Experts
-- **Publish Strategies** - Share trading knowledge with locked escrow rewards
-- **Earn Passively** - Get 20% of all successful executions
-- **Dispute Rights** - Challenge fraudulent proof submissions
-- **Track Record** - Build on-chain reputation
-
-</td>
-<td width="50%">
-
-### For Traders
-- **Verified Strategies** - AI-validated execution proof
-- **Low Risk** - Only 10% stake, refunded if strategy fails
-- **Real Trades** - Execute on StellarX DEX with real assets
-- **Streaming Payouts** - Rewards distributed over 5 minutes
-
-</td>
-</tr>
-</table>
-
-<br>
-
-<div align="center">
-
-| Feature | Technology |
-|:--------|:-----------|
-| Smart Contracts | Soroban (Rust) on Stellar |
-| AI Verification | Gemini 2.0 Flash |
-| Frontend | Next.js 14 + TailwindCSS |
-| Wallet | Freighter Wallet Integration |
-| DEX Integration | StellarX Trading |
-| Streaming Payments | Stellar SDK |
-
-</div>
-
-<br>
-
----
-
-<br>
-
-## Screenshots
-
-<div align="center">
-
-| Page | Preview |
-|:-----|:--------|
-| **Home** | Landing page with marketplace overview |
-| **Create Strategy** | Form to publish trading strategies |
-| **Marketplace** | Browse and stake on strategies |
-| **AI Agents** | One-click automated execution |
-| **Verify** | Upload proof for AI verification |
-| **Dashboard** | Track earnings and payouts |
-
-*Screenshots will be added after final UI polish*
-
-</div>
-
-<br>
-
----
 
 <br>
 
@@ -298,7 +222,24 @@ StratFlow solves a fundamental problem in trading: experts cannot share strategi
 </div>
 
 <br>
+## Screenshots
 
+<div align="center">
+
+| Page | Preview |
+|:-----|:--------|
+| **Home** | Landing page with marketplace overview |
+| **Create Strategy** | Form to publish trading strategies |
+| **Marketplace** | Browse and stake on strategies |
+| **AI Agents** | One-click automated execution |
+| **Verify** | Upload proof for AI verification |
+| **Dashboard** | Track earnings and payouts |
+
+*Screenshots will be added after final UI polish*
+
+</div>
+
+<br>
 ---
 
 ## AI Agent: The Trust Engine
@@ -942,33 +883,6 @@ cargo test
 | **Repository** | [github.com/sujit-al1809/stellar-hackathon](https://github.com/sujit-al1809/stellar-hackathon) |
 
 </div>
-
----
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-<details>
-<summary>View MIT License</summary>
-
-```
-MIT License
-
-Copyright (c) 2026 StratFlow
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-```
-
-</details>
 
 ---
 
