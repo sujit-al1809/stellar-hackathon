@@ -3,6 +3,29 @@
 use soroban_sdk::{contract, contractimpl, contracttype, Address, Env, log};
 
 // ============================================================
+// STRATFLOW: AI-POWERED TRADING STRATEGY MARKETPLACE
+// ============================================================
+//
+// AI AGENT VERIFICATION FLOW:
+// ---------------------------
+// 1. Executor submits trade execution proof (screenshot, trade log)
+// 2. Off-chain AI Agent (Gemini 2.0 Flash) analyzes the proof:
+//    - Validates trade matches strategy parameters
+//    - Checks entry/exit points, position size, stop-loss
+//    - Detects fake/manipulated screenshots
+//    - Assigns confidence score (0-100%)
+// 3. AI Agent calls verify_execution() with approval decision
+// 4. AI Agent calls set_confidence() with confidence score
+// 5. If confidence >= 85%, execution enters dispute window
+// 6. Strategist can challenge within 60s (demo) / 24h (prod)
+// 7. If disputed, secondary AI review resolves the dispute
+//
+// The AI Agent acts as an impartial judge, enabling trustless
+// verification without requiring manual review for every trade.
+//
+// ============================================================
+
+// ============================================================
 // DATA STRUCTURES
 // ============================================================
 
@@ -209,12 +232,21 @@ impl StratFlowContract {
     }
 
     // --------------------------------------------------------
-    // 3) VERIFY EXECUTION (AI result + confidence)
-    //    Called after AI verification. Records the AI verdict
-    //    and confidence score. If approved with sufficient
-    //    confidence, enters DISPUTE WINDOW — strategist can
-    //    challenge within 60s (demo) / 24h (prod).
-    //    If rejected, marks as Rejected and re-activates strategy.
+    // 3) VERIFY EXECUTION (AI Agent Result)
+    //    Called by the AI Agent after analyzing the proof.
+    //    
+    //    AI AGENT WORKFLOW:
+    //    - Receives execution proof via /api/verify endpoint
+    //    - Uses Gemini 2.0 Flash to analyze trade screenshot
+    //    - Checks: strategy compliance, trade authenticity,
+    //      position sizing, entry/exit accuracy
+    //    - Returns approval + confidence score (0-100%)
+    //    
+    //    If approved with >= 85% confidence:
+    //      → Enters DISPUTE WINDOW (60s demo / 24h prod)
+    //      → Strategist can challenge if proof looks fraudulent
+    //    If rejected:
+    //      → Marks as Rejected, re-activates strategy
     // --------------------------------------------------------
     pub fn verify_execution(env: Env, execution_id: u64, approved: bool) -> bool {
         let mut execution: Execution = env
@@ -264,8 +296,18 @@ impl StratFlowContract {
     }
 
     // --------------------------------------------------------
-    // 3b) SET CONFIDENCE (called alongside verify)
-    //     Stores the AI confidence score (0-100) on-chain
+    // 3b) SET CONFIDENCE (AI Agent Confidence Score)
+    //     Stores the AI confidence score (0-100) on-chain.
+    //     
+    //     AI CONFIDENCE FACTORS:
+    //     - Image clarity and authenticity detection
+    //     - Trade parameters matching strategy rules
+    //     - Timestamp verification against market data
+    //     - Pattern recognition for common manipulation
+    //     
+    //     Score >= 85%: High confidence, auto-approved
+    //     Score 50-84%: Flagged for manual review
+    //     Score < 50%:  Likely fraudulent, rejected
     // --------------------------------------------------------
     pub fn set_confidence(env: Env, execution_id: u64, confidence: u32) {
         let mut execution: Execution = env
@@ -361,12 +403,19 @@ impl StratFlowContract {
     }
 
     // --------------------------------------------------------
-    // 5) RESOLVE DISPUTE
+    // 5) RESOLVE DISPUTE (Secondary AI Review)
     //    Called after secondary AI review or admin decision.
-    //    upheld=true  → executor's proof was fake, slash stake,
-    //                    refund reward to strategist
-    //    upheld=false → execution was legit, start stream,
-    //                    return stake to executor
+    //    
+    //    DISPUTE RESOLUTION AI:
+    //    - Performs deeper analysis than initial verification
+    //    - Cross-references with blockchain trade history
+    //    - Compares against known fraud patterns database
+    //    - Multiple AI models vote for consensus decision
+    //    
+    //    upheld=true  → Executor's proof was fraudulent
+    //                   → Slash stake, refund strategist
+    //    upheld=false → Execution was legitimate
+    //                   → Start stream, return stake
     // --------------------------------------------------------
     pub fn resolve_dispute(env: Env, execution_id: u64, upheld: bool) -> bool {
         let mut execution: Execution = env

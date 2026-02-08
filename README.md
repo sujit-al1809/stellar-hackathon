@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="scripts/logo.png" alt="StratFlow Logo" width="80">
-
-# StratFlow
+<img src="scripts/stratflow-logo.svg" alt="StratFlow Logo" width="300">
 
 ### Trustless Trading | AI Verification | Streaming Payouts
 
@@ -10,10 +8,6 @@
 
 <p>
   <strong>Experts monetize knowledge. Traders access verified strategies. AI Agent executes and verifies automatically.</strong>
-</p>
-
-<p>
-  <img src="https://img.shields.io/badge/StratFlow-Decentralized%20Trading-blueviolet?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyek0xMSAxOUg5di02aDJ2NnptNC02aC00di0yaDR2MnoiLz48L3N2Zz4=" alt="StratFlow">
 </p>
 
 <p>
