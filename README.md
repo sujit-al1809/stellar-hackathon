@@ -10,9 +10,7 @@
   <strong>Experts monetize knowledge. Traders access verified strategies. AI Agent executes and verifies automatically.</strong>
 </p>
 
-<p>
-  <code>One-Click AI Agent</code> | <code>Real Stellar Trades</code> | <code>Gemini 2.0 Verification</code> | <code>Soroban Smart Contracts</code>
-</p>
+
 
 <p>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
@@ -31,7 +29,7 @@
 
 <br>
 
-<img src="https://cdn.sanity.io/images/e2r40yh6/production-i18n/502d9b1bbee8c2169cc0eb3d0982ba3bf02ce300-1776x548.png?w=768&auto=format&dpr=2" alt="Stellar Banner" width="600">
+<img src="https://cdn.sanity.io/images/e2r40yh6/production-i18n/502d9b1bbee8c2169cc0eb3d0982ba3bf02ce300-1776x548.png?w=768&auto=format&dpr=2" alt="Stellar Banner" width="200">
 
 <br>
 <br>
