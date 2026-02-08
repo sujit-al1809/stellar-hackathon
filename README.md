@@ -2,10 +2,16 @@
 
 # StratFlow
 
+### Trustless Trading | AI Verification | Streaming Payouts
+
 <h3>AI-Verified Trading Strategy Marketplace on Stellar</h3>
 
 <p>
-  <strong>Experts monetize knowledge. Traders access verified strategies. AI Agent verifies everything.</strong>
+  <strong>Experts monetize knowledge. Traders access verified strategies. AI Agent executes and verifies automatically.</strong>
+</p>
+
+<p>
+  <code>One-Click AI Agent</code> | <code>Real Stellar Trades</code> | <code>Gemini 2.0 Verification</code> | <code>Soroban Smart Contracts</code>
 </p>
 
 <p>
@@ -25,7 +31,7 @@
 
 <br>
 
-<img src="https://raw.githubusercontent.com/stellar/.github/master/profile/banner.png" alt="Stellar Banner" width="600">
+<img src="https://cdn.sanity.io/images/e2r40yh6/production-i18n/502d9b1bbee8c2169cc0eb3d0982ba3bf02ce300-1776x548.png?w=768&auto=format&dpr=2" alt="Stellar Banner" width="600">
 
 <br>
 <br>
@@ -121,52 +127,6 @@ Reward Stream
 </tr>
 </table>
 
-<br>
-
-```
-ONE-CLICK AI AGENT FLOW (/app/agents)
-=====================================
-
-  Click "Start Full Cycle"
-           |
-           v
-  +------------------+
-  | Transaction 1    |
-  | Buy XLM on       |
-  | StellarX DEX     |
-  +------------------+
-           |
-           v
-  +------------------+
-  | Transaction 2    |
-  | Execute Strategy |
-  | (Swap/Trade)     |
-  +------------------+
-           |
-           v
-  +------------------+
-  | Transaction 3    |
-  | Take Profit      |
-  | (Sell Position)  |
-  +------------------+
-           |
-           v
-  +------------------+
-  | Auto-Generate    |
-  | Execution Proof  |
-  +------------------+
-           |
-           v
-  +------------------+
-  | Submit to AI     |
-  | Verification     |
-  +------------------+
-           |
-           v
-     DEMO COMPLETE!
-   Trader: 80% + stake
-   Expert: 20% share
-```
 
 <br>
 
