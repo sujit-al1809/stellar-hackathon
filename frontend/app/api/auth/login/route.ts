@@ -1,15 +1,15 @@
 // POST /api/auth/login — authenticate and set session
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { findUserByEmail, createUser } from "@/lib/db";
+import { findUserByEmail } from "@/lib/db";
 import { setSessionCookie } from "@/lib/session";
 
-// Demo users — seeded on first login attempt
-const DEMO_SEEDS: Record<string, { name: string; email: string; password: string; role: string }> = {
-  "expert@stratflow.io": { name: "Alice Chen", email: "expert@stratflow.io", password: "demo123", role: "expert" },
-  "trader@stratflow.io": { name: "Bob Martinez", email: "trader@stratflow.io", password: "demo123", role: "trader" },
-  "verifier@stratflow.io": { name: "Carol Wang", email: "verifier@stratflow.io", password: "demo123", role: "verifier" },
-  "admin@stratflow.io": { name: "Dave Kumar", email: "admin@stratflow.io", password: "demo123", role: "admin" },
+// Demo users — password is "demo123"
+const DEMO_ACCOUNTS: Record<string, { name: string; email: string; role: string }> = {
+  "expert@stratflow.io": { name: "Alice Chen", email: "expert@stratflow.io", role: "expert" },
+  "trader@stratflow.io": { name: "Bob Martinez", email: "trader@stratflow.io", role: "trader" },
+  "verifier@stratflow.io": { name: "Carol Wang", email: "verifier@stratflow.io", role: "verifier" },
+  "admin@stratflow.io": { name: "Dave Kumar", email: "admin@stratflow.io", role: "admin" },
 };
 
 export async function POST(req: NextRequest) {
@@ -20,23 +20,27 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Email and password are required" }, { status: 400 });
     }
 
-    let user = findUserByEmail(email);
+    // Check if it's a demo account with demo123 password
+    const demoAccount = DEMO_ACCOUNTS[email];
+    if (demoAccount && password === "demo123") {
+      // Set session for demo user
+      const userId = `demo-${demoAccount.role}-001`;
+      await setSessionCookie({ userId, email: demoAccount.email, role: demoAccount.role });
 
-    // Auto-seed demo user on first login attempt
-    if (!user && DEMO_SEEDS[email]) {
-      const demo = DEMO_SEEDS[email];
-      if (password === demo.password) {
-        const hashedPassword = await bcrypt.hash(demo.password, 12);
-        user = createUser({
-          id: `demo-${demo.role}`,
-          name: demo.name,
-          email: demo.email,
-          password: hashedPassword,
-          role: demo.role,
-          wallet_address: null,
-        });
-      }
+      return NextResponse.json({
+        user: {
+          id: userId,
+          name: demoAccount.name,
+          email: demoAccount.email,
+          role: demoAccount.role,
+          createdAt: new Date().toISOString(),
+        },
+        message: "Login successful",
+      });
     }
+
+    // For non-demo users, check the database
+    const user = findUserByEmail(email);
 
     if (!user) {
       return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
