@@ -1,12 +1,10 @@
 <div align="center">
 
-<img src="scripts/trade%20marketing%20logo.png" alt="StratFlow Logo" width="100">
-
-# StratFlow
+<img src="scripts/trade%20marketing%20logo.png" alt="StratFlow Logo" width="60"> **StratFlow**
 
 ### Trustless Trading | AI Verification | Streaming Payouts
 
-<h3>AI-Verified Trading Strategy Marketplace on Stellar</h3>
+<p>AI-Verified Trading Strategy Marketplace on Stellar</p>
 
 <p>
   <strong>Experts monetize knowledge. Traders access verified strategies. AI Agent executes and verifies automatically.</strong>
@@ -27,16 +25,9 @@
   <a href="#contributing">Contributing</a>
 </p>
 
-<br>
+<img src="https://cdn.sanity.io/images/e2r40yh6/production-i18n/502d9b1bbee8c2169cc0eb3d0982ba3bf02ce300-1776x548.png?w=768&auto=format&dpr=2" alt="Stellar Banner" width="400">
 
-<img src="https://cdn.sanity.io/images/e2r40yh6/production-i18n/502d9b1bbee8c2169cc0eb3d0982ba3bf02ce300-1776x548.png?w=768&auto=format&dpr=2" alt="Stellar Banner" width="200">
-
-<br>
-<br>
-
-**Built for Stellar Build-A-Thon Chennai 2026**
-
-*February 7-8, 2026*
+**Built for Stellar Build-A-Thon Chennai 2026** | *February 7-8, 2026*
 
 </div>
 
