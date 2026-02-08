@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="scripts/trade%20marketing%20logo.png" alt="StratFlow Logo" width="200">
+<img src="scripts/trade%20marketing%20logo.png" alt="StratFlow Logo" width="100">
 
 # StratFlow
 
