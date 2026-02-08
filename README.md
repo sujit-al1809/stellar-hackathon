@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="scripts/trade%20marketing%20logo.png" alt="StratFlow Logo" width="200">
+
 # StratFlow
 
 ### Trustless Trading | AI Verification | Streaming Payouts
