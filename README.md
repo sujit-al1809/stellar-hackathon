@@ -125,20 +125,6 @@ Reward Stream
 
 <br>
 
-<div align="center">
-
-| What AI Agent Does | Details |
-|:---|:---|
-| Autonomous Execution | Performs 3 real trades on Stellar Testnet |
-| Proof Generation | Auto-captures trade data for verification |
-| One-Click Demo | Full cycle from execution to payout |
-| 24/7 Operation | No manual intervention needed |
-
-</div>
-
-<br>
-
-
 ## Contract Address
 
 <div align="center">
@@ -151,21 +137,6 @@ Reward Stream
 
 </div>
 
-<br>
-
-## Deployed Links
-
-<div align="center">
-
-| Environment | Link |
-|:------------|:-----|
-| **Live Demo** | *Coming Soon* |
-| **GitHub Repo** | [github.com/sujit-al1809/stellar-hackathon](https://github.com/sujit-al1809/stellar-hackathon) |
-| **Smart Contract** | [Stellar Expert](https://stellar.expert/explorer/testnet/contract/CBJRILB6ZOEUWJ7Q5WGXL7PZZJDB7M7YUOFCOYAV3QYZYHGLB7FW5Q73) |
-
-</div>
-
-<br>
 
 ## The Problem
 
