@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useWallet } from "./WalletProvider";
 
@@ -27,13 +26,9 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <Image 
-              src="/stratflow-logo.svg" 
-              alt="StratFlow" 
-              width={160} 
-              height={40}
-              className="h-10 w-auto"
-            />
+            <span className="text-2xl font-bold bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
+              StratFlow
+            </span>
           </Link>
 
           {/* Navigation Links */}
