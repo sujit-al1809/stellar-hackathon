@@ -239,10 +239,10 @@ export default function HomePage() {
             </div>
             
             <div className="grid grid-cols-2 gap-x-12 gap-y-4 text-xs font-mono text-zinc-500 uppercase">
-               <a href="#" className="hover:text-lime-400 transition-colors">> Documentation</a>
-               <a href="#" className="hover:text-lime-400 transition-colors">> GitHub_Repo</a>
-               <a href="#" className="hover:text-lime-400 transition-colors">> Governance</a>
-               <a href="#" className="hover:text-lime-400 transition-colors">> Audit_Log</a>
+               <a href="#" className="hover:text-lime-400 transition-colors">&gt; Documentation</a>
+               <a href="#" className="hover:text-lime-400 transition-colors">&gt; GitHub_Repo</a>
+               <a href="#" className="hover:text-lime-400 transition-colors">&gt; Governance</a>
+               <a href="#" className="hover:text-lime-400 transition-colors">&gt; Audit_Log</a>
             </div>
           </div>
           
