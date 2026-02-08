@@ -11,6 +11,10 @@
 </p>
 
 <p>
+  <a href="https://stellar-hackathon-seven.vercel.app/"><img src="https://img.shields.io/badge/🚀_Live_Demo-Click_Here-00D4AA?style=for-the-badge" alt="Live Demo"></a>
+</p>
+
+<p>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
   <a href="https://stellar.org"><img src="https://img.shields.io/badge/Stellar-Soroban-7B68EE?logo=stellar" alt="Stellar"></a>
   <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-14-black?logo=next.js" alt="Next.js"></a>
