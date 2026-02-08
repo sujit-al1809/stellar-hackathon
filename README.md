@@ -142,7 +142,7 @@ Reward Stream
 
 <br>
 
-## 📜 Contract Address
+## Contract Address
 
 <div align="center">
 
@@ -160,13 +160,13 @@ Reward Stream
 
 <br>
 
-## ✨ Features
+## Features
 
 <table>
 <tr>
 <td width="50%">
 
-### 🔐 For Experts
+### For Experts
 - **Publish Strategies** - Share trading knowledge with locked escrow rewards
 - **Earn Passively** - Get 20% of all successful executions
 - **Dispute Rights** - Challenge fraudulent proof submissions
@@ -175,7 +175,7 @@ Reward Stream
 </td>
 <td width="50%">
 
-### 📈 For Traders
+### For Traders
 - **Verified Strategies** - AI-validated execution proof
 - **Low Risk** - Only 10% stake, refunded if strategy fails
 - **Real Trades** - Execute on StellarX DEX with real assets
@@ -206,7 +206,7 @@ Reward Stream
 
 <br>
 
-## 📸 Screenshots
+## Screenshots
 
 <div align="center">
 
@@ -229,7 +229,7 @@ Reward Stream
 
 <br>
 
-## 🔗 Deployed Links
+## Deployed Links
 
 <div align="center">
 
@@ -240,72 +240,6 @@ Reward Stream
 | **Smart Contract** | [Stellar Expert](https://stellar.expert/explorer/testnet/contract/CBJRILB6ZOEUWJ7Q5WGXL7PZZJDB7M7YUOFCOYAV3QYZYHGLB7FW5Q73) |
 
 </div>
-
-<br>
-
----
-
-<br>
-
-## 🚀 Future Scope
-
-<table>
-<tr>
-<td width="33%" align="center">
-
-### Phase 1
-**Q1 2026**
-
-- ✅ Core smart contract
-- ✅ AI verification engine
-- ✅ Basic marketplace UI
-- 🔄 Testnet deployment
-
-</td>
-<td width="33%" align="center">
-
-### Phase 2
-**Q2 2026**
-
-- Multi-asset strategies
-- Advanced analytics dashboard
-- Expert leaderboard
-- Mobile app (React Native)
-
-</td>
-<td width="33%" align="center">
-
-### Phase 3
-**Q3-Q4 2026**
-
-- Mainnet launch
-- DAO governance
-- Cross-chain strategies
-- Institutional features
-
-</td>
-</tr>
-</table>
-
-<br>
-
-<div align="center">
-
-### 🎯 Roadmap Highlights
-
-| Feature | Status | Target |
-|:--------|:------:|:------:|
-| Multi-strategy portfolios | 📋 Planned | Q2 2026 |
-| Social trading features | 📋 Planned | Q2 2026 |
-| Advanced AI models | 📋 Planned | Q3 2026 |
-| Mainnet deployment | 📋 Planned | Q3 2026 |
-| Token launch (STRAT) | 📋 Planned | Q4 2026 |
-
-</div>
-
-<br>
-
----
 
 <br>
 
