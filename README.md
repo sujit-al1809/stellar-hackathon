@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="scripts/stratflow-logo.svg" alt="StratFlow Logo" width="300">
+<img src="scripts/stratflow-logo1.svg" alt="StratFlow Logo" width="300">
 
 ### Trustless Trading | AI Verification | Streaming Payouts
 
